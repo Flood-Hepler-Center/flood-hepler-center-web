@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16' # Replace with your Node.js version
+          node-version: '16' # Replace with the version your project requires
 
       - name: Install Dependencies
         run: npm install
@@ -24,4 +24,4 @@ jobs:
         run: npm install -g vercel
 
       - name: Deploy to Vercel
-        run: npx vercel deploy --prod --token ${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel deploy --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
