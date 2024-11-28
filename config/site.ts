@@ -9,6 +9,10 @@ export const siteConfig = {
       href: '/',
     },
     {
+      label: 'แจ้งความช่วยเหลือ',
+      href: '/request',
+    },
+    {
       label: 'ข่าวสาร',
       href: '/docs',
     },
@@ -19,10 +23,6 @@ export const siteConfig = {
     {
       label: 'เบอร์โทรศัพท์',
       href: '/blog',
-    },
-    {
-      label: 'เกี่ยวกับเรา',
-      href: '/about',
     },
   ],
   links: {
