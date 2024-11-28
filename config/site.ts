@@ -1,8 +1,8 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: 'Next.js + NextUI',
-  description: 'Make beautiful websites regardless of your design experience.',
+  name: 'ศูนย์ข้อมูลน้ำท่วมภาคใต้ปี 2567 | Southern Flood Information Center 2024',
+  description: 'รวบรวมข้อมูลและทราบข่าวสารเกี่ยวกับน้ำท่วมภาคใต้ 2567',
   navItems: [
     {
       label: 'หน้าแรก',
@@ -14,7 +14,7 @@ export const siteConfig = {
     // },
     {
       label: 'ข่าวสาร',
-      href: '/docs',
+      href: '/news',
     },
     {
       label: 'แผนที่ระดับน้ำ',
@@ -22,7 +22,7 @@ export const siteConfig = {
     },
     {
       label: 'เบอร์โทรศัพท์',
-      href: '/blog',
+      href: '/phone',
     },
   ],
   links: {
