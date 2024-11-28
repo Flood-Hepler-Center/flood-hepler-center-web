@@ -8,10 +8,10 @@ export const siteConfig = {
       label: 'หน้าแรก',
       href: '/',
     },
-    {
-      label: 'แจ้งความช่วยเหลือ',
-      href: '/request',
-    },
+    // {
+    //   label: 'แจ้งความช่วยเหลือ',
+    //   href: '/request',
+    // },
     {
       label: 'ข่าวสาร',
       href: '/docs',
