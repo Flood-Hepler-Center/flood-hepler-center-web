@@ -106,7 +106,7 @@ export default function App() {
         >
           <TableHeader>
             <TableColumn>ชื่อ</TableColumn>
-            <TableColumn>เบอร์โทรศัพท์</TableColumn>
+            <TableColumn>เลขที่บัญชี</TableColumn>
             <TableColumn>ข้อมูลเพิ่มเติม</TableColumn>
           </TableHeader>
           <TableBody>
