@@ -31,7 +31,7 @@ module.exports = {
           tiny: '1rem', // text-tiny
           small: '1.25rem', // text-small
           medium: '1.5rem', // text-medium
-          large: '1.75rem', // text-large
+          large: '1.5rem', // text-large
         },
         radius: {
           small: '8px', // rounded-small
@@ -54,7 +54,7 @@ module.exports = {
             error: '#ff0080',
             accent: '#00d68f',
             background: '#f4f5f7',
-            surface: '#ffffff',
+            surface: '#e4e5e7',
             divider: '#e1e3e6',
             text: '#000000',
             placeholder: '#6e7191',
@@ -72,7 +72,7 @@ module.exports = {
             error: '#ff0080',
             accent: '#00d68f',
             background: '#333',
-            surface: '#121212',
+            surface: '#777',
             divider: '#333333',
             text: '#ffffff',
             placeholder: '#6e7191',
