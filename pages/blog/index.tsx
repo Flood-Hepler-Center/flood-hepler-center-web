@@ -39,7 +39,7 @@ export default function App() {
 
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleSearch = debounce((term) => {
+  const handleSearch = debounce((term: any) => {
     setSearchTerm(term);
   }, 300);
 
@@ -88,7 +88,7 @@ export default function App() {
                 disallowEmptySelection
                 selectionMode='single'
                 selectedKeys={selectedKeys}
-                onSelectionChange={(keys) =>
+                onSelectionChange={(keys: any) =>
                   setSelectedKeys(Array.from(keys).join(', '))
                 }
               >

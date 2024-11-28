@@ -7,7 +7,7 @@ const LongdoMap = () => {
       try {
         // Fetch water level data
         const response = await fetch(
-          "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_load?basin_code=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21"
+          "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_load?basin_code=18,19,20,21,22"
         );
         const data = await response.json();
 
