@@ -1,5 +1,6 @@
-import { getWaterLevel } from "@/src/util/calulate";
-import { useEffect } from "react";
+import { getWaterLevel } from '@/src/util/calulate';
+import { useEffect } from 'react';
+import { title } from './primitives';
 
 const LongdoMap = () => {
   useEffect(() => {
@@ -7,19 +8,19 @@ const LongdoMap = () => {
       try {
         // Fetch water level data
         const response = await fetch(
-          "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_load?basin_code=18,19,20,21,22"
+          'https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_load?basin_code=18,19,20,21,22'
         );
         const data = await response.json();
 
         // Load Longdo Map script
-        const script = document.createElement("script");
+        const script = document.createElement('script');
         script.src =
-          "https://api.longdo.com/map/?key=3e21e572ed29f65590f1e3d88039b0f3";
+          'https://api.longdo.com/map/?key=3e21e572ed29f65590f1e3d88039b0f3';
         script.async = true;
         script.onload = () => {
           // Initialize map
           const map = new window.longdo.Map({
-            placeholder: document.getElementById("map"),
+            placeholder: document.getElementById('map'),
           });
 
           // Set default location to user's current location
@@ -31,7 +32,7 @@ const LongdoMap = () => {
                 map.zoom(10);
               },
               (error) => {
-                console.error("Error getting location:", error);
+                console.error('Error getting location:', error);
                 // Fallback to a default location
                 map.location({ lon: 101.2804, lat: 6.5411 }, true);
                 map.zoom(10);
@@ -39,7 +40,7 @@ const LongdoMap = () => {
             );
           } else {
             // Fallback if Geolocation is not supported
-            console.warn("Geolocation is not supported by this browser.");
+            console.warn('Geolocation is not supported by this browser.');
             map.location({ lon: 101.2804, lat: 6.5411 }, true);
             map.zoom(10);
           }
@@ -56,15 +57,15 @@ const LongdoMap = () => {
                 const marker = new window.longdo.Marker(
                   { lon: parseFloat(long), lat: parseFloat(lat) },
                   {
-                    title: tele_station_name || "Water Station",
+                    title: tele_station_name || 'Water Station',
                     detail: `สถานการณ์น้ำ : ${waterLevelDisplay?.text}`,
                     icon:
-                      waterLevelDisplay?.level === "low"
+                      waterLevelDisplay?.level === 'low'
                         ? {
                             html: '<img src="/location-pin.png" height="20" width="20"/>',
                             offset: { x: 10, y: 10 },
                           }
-                        : waterLevelDisplay?.level === "medium"
+                        : waterLevelDisplay?.level === 'medium'
                           ? {
                               html: '<img src="/location-pin-med.png" height="20" width="20"/>',
                               offset: { x: 10, y: 10 },
@@ -83,14 +84,23 @@ const LongdoMap = () => {
           document.body.removeChild(script);
         };
       } catch (error) {
-        console.error("Error fetching water level data:", error);
+        console.error('Error fetching water level data:', error);
       }
     };
 
     fetchDataAndInitializeMap();
   }, []);
 
-  return <div id="map" style={{ width: "100%", height: "500px" }}></div>;
+  return (
+    <section className='flex flex-col items-center justify-center mt-12'>
+      <div className='inline-block max-w-lg text-center justify-center'>
+        <h1 className={title()}>แผนที่ระดับน้ำ</h1>
+      </div>
+      <div className='flex w-full my-5'>
+        <div id='map' style={{ width: '100%', height: '500px' }}></div>;
+      </div>
+    </section>
+  );
 };
 
 export default LongdoMap;
