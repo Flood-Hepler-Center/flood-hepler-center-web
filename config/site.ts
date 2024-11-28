@@ -28,6 +28,10 @@ export const siteConfig = {
       label: 'แผนที่ระดับน้ำ',
       href: '/water-level',
     },
+    {
+      label: 'เกี่ยวกับเรา',
+      href: '/about',
+    },
   ],
   links: {
     github: 'https://github.com/nextui-org/nextui',
