@@ -1,3 +1,4 @@
+import { Card } from '@nextui-org/card';
 import { title } from './primitives';
 
 const FloodComponent = ({ articles, max }: any) => {
@@ -13,10 +14,7 @@ const FloodComponent = ({ articles, max }: any) => {
         {articles.length > 0 ? (
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
             {articlesWithMax.map((article: any, index: any) => (
-              <div
-                key={index}
-                className='bg-surface/60 rounded-lg shadow-md overflow-hidden'
-              >
+              <Card key={index}>
                 {article.image && (
                   <img
                     src={article.image}
@@ -39,7 +37,7 @@ const FloodComponent = ({ articles, max }: any) => {
                     อ่านต่อ →
                   </a>
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
         ) : (
