@@ -39,7 +39,7 @@ export const getStaticProps = async () => {
         title: cleanTitle,
         description: descriptionMatch
           ? descriptionMatch[1].replace(/&quot;/g, '"')
-          : 'No description',
+          : 'ไม่มีรายละเอียดเพิ่มเติม',
         url: urlMatch ? `https://www.thaipbs.or.th${urlMatch[1]}` : 'No URL',
         date: dateMatch ? dateMatch[1] : 'No date',
         image: imageMatch ? imageMatch[1] : null,

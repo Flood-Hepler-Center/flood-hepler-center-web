@@ -5,6 +5,9 @@ import DefaultLayout from '@/layouts/default';
 import FloodNews from './news';
 import axios from 'axios';
 import FloodComponent from '@/components/flood';
+import PhoneComponent from '@/components/phone';
+import DonateComponent from '@/components/donate';
+import LongdoMap from '@/components/map';
 
 export const getStaticProps = async () => {
   let articles = [];
@@ -121,6 +124,9 @@ export default function IndexPage({ articles }: any) {
         </div>
       </section>
       <FloodComponent articles={articles} max={3} />
+      <PhoneComponent />
+      <DonateComponent />
+      <LongdoMap />
     </DefaultLayout>
   );
 }
