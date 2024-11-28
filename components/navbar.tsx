@@ -56,7 +56,7 @@ export const Navbar = () => {
             isExternal
             as={Link}
             className='text-md font-normal text-default-600 bg-background'
-            href={siteConfig.links.sponsor}
+            href={"https://buymeacoffee.com/rommadon21j"}
             startContent={<HeartFilledIcon className='text-danger' />}
             variant='flat'
           >
@@ -72,7 +72,7 @@ export const Navbar = () => {
           isExternal
           as={Link}
           className='text-md font-normal text-default-600 bg-background'
-          href={siteConfig.links.sponsor}
+          href={"https://buymeacoffee.com/rommadon21j"}
           startContent={<HeartFilledIcon className='text-danger' />}
           variant='flat'
         >
