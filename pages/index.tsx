@@ -124,6 +124,14 @@ export default function IndexPage({ articles }: any) {
         </div>
       </section>
       <FloodComponent articles={articles} max={3} />
+      <div className="text-center mb-5">
+        <Link
+          href={`/news`}
+          target="_blank"
+        >
+          <Button className='mb-5'>ดูข่าวเพิ่มเติม</Button>
+        </Link>
+      </div>
       <PhoneComponent max={10} />
       <div className="text-center my-5">
         <Link
