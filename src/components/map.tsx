@@ -1,28 +1,70 @@
+import { getWaterLevel } from "@/util/calulate";
 import { useEffect } from "react";
 
 const LongdoMap = () => {
   useEffect(() => {
-    // Dynamically load the Longdo Map script
-    const script = document.createElement("script");
-    script.src = "https://api.longdo.com/map/?key=3e21e572ed29f65590f1e3d88039b0f3"; // Replace with your Longdo Map API key
-    script.async = true;
-    script.onload = () => {
-      // Initialize the Longdo Map
-      const map = new window.longdo.Map({
-        placeholder: document.getElementById("map"),
-      });
+    const fetchDataAndInitializeMap = async () => {
+      try {
+        const response = await fetch(
+          "https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel_load?basin_code=20,21"
+        );
+        const data = await response.json();
 
-      // Example: Add a marker
-      map.location({ lon: 100.5018, lat: 13.7563 }); // Bangkok coordinates
-      map.Overlays.add(
-        new window.longdo.Marker({ lon: 100.5018, lat: 13.7563 })
-      );
-    };
-    document.body.appendChild(script);
+        const script = document.createElement("script");
+        script.src =
+          "https://api.longdo.com/map/?key=3e21e572ed29f65590f1e3d88039b0f3";
+        script.async = true;
+        script.onload = () => {
+          const map = new window.longdo.Map({
+            placeholder: document.getElementById("map"),
+          });
 
-    return () => {
-      document.body.removeChild(script); // Clean up script when the component unmounts
+          map.location({ lon: 101.2804, lat: 6.5411 }, true); 
+          map.zoom(10);
+
+          if (data && data.waterlevel_data) {
+            data.waterlevel_data?.data?.forEach((item: any) => {
+              if (item.station) {
+                const { tele_station_lat: lat, tele_station_long: long } =
+                  item.station;
+                const { th: tele_station_name } =
+                  item.station.tele_station_name;
+                const waterLevelDisplay = getWaterLevel(+item.storage_percent);
+                const marker = new window.longdo.Marker(
+                  { lon: parseFloat(long), lat: parseFloat(lat) },
+                  {
+                    title: tele_station_name || "Water Station",
+                    detail: `สถานการณ์น้ำ : ${waterLevelDisplay?.text}`,
+                    icon:
+                      waterLevelDisplay?.level === "low"
+                        ? {
+                            html: '<img src="/location-pin.png" height={1} width={1}/>',
+                            offset: { x: 10, y: 10 },
+                          }
+                        : waterLevelDisplay?.level === "medium"
+                        ? {
+                            html: '<img src="/location-pin-med.png" height={1} width={1}/>',
+                            offset: { x: 10, y: 10 },
+                          }
+                        : undefined,
+                  }
+                );
+                map.Overlays.add(marker);
+              }
+            });
+          }
+        };
+        document.body.appendChild(script);
+
+        return () => {
+          document.body.removeChild(script);
+        };
+      } catch (error) {
+        console.error("Error fetching water level data:", error);
+      }
     };
+
+    fetchDataAndInitializeMap();
   }, []);
 
   return <div id="map" style={{ width: "100%", height: "500px" }}></div>;
