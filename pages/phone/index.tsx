@@ -22,6 +22,7 @@ import {
 } from '@nextui-org/table';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import './custom-style.css';
 
 export default function App() {
   const [selectedKeys, setSelectedKeys] = useState('ทั้งหมด');
@@ -66,8 +67,8 @@ export default function App() {
         <div className='inline-block w-full text-center justify-center'>
           <h1 className={title()}>ติดต่อความช่วยเหลือ</h1>
         </div>
-        <div className='flex w-full justify-center'>
-          <div className='w-3/4'>
+        <div className='flex w-full justify-center text-lg'>
+          <div className='w-full'>
             <Input
               onChange={handleInputChange}
               type='email'

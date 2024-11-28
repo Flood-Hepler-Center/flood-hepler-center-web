@@ -22,7 +22,7 @@ export const siteConfig = {
     },
     {
       label: 'เบอร์โทรศัพท์',
-      href: '/blog',
+      href: '/phone',
     },
   ],
   links: {
