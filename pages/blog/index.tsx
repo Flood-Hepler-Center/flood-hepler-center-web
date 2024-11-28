@@ -56,7 +56,7 @@ export default function App() {
     };
   }, []);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     handleSearch(e.target.value);
   };
 
