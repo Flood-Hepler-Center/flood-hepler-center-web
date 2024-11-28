@@ -16,7 +16,7 @@ import {
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 
-export default function DonateComponent() {
+const DonateComponent = ({ max }: any) => {
   const [selectedKeys, setSelectedKeys] = useState('ทั้งหมด');
 
   const uniqueLocation = DONATION.map((item) => item.name).filter(
@@ -89,7 +89,8 @@ export default function DonateComponent() {
           ))}
         </TableBody>
       </Table>
-      <div className='text-center'>
+      {!max ? (
+        <div className="text-center">
         <Link
           href={`https://forms.gle/Qjnbtruf8k8e4Bxi9`}
           passHref
@@ -97,7 +98,12 @@ export default function DonateComponent() {
         >
           <Button>เพิ่มรายชื่อผู้บริจาค</Button>
         </Link>
-      </div>
+        </div>
+      ) : (
+        ""
+      )}
     </section>
   );
 }
+
+export default DonateComponent;

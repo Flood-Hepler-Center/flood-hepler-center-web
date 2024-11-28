@@ -1,11 +1,12 @@
-import type { AppProps } from 'next/app';
+import type { AppProps } from "next/app";
 
-import { NextUIProvider } from '@nextui-org/system';
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import { useRouter } from 'next/router';
+import { NextUIProvider } from "@nextui-org/system";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { useRouter } from "next/router";
 
-import { fontSans, fontMono, fontHelve } from '@/config/fonts';
-import '@/styles/globals.css';
+import { fontSans, fontMono, fontHelve } from "@/config/fonts";
+import "@/styles/globals.css";
+import { Head } from "next/document";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();

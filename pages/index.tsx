@@ -1,13 +1,13 @@
 import { LogoIcon } from '@/components/icons';
-import { Card, CardBody, Image, Button, Slider } from '@nextui-org/react';
+import { Card, CardBody, Image, Button, Slider, Link } from '@nextui-org/react';
 import { title, subtitle } from '@/components/primitives';
 import DefaultLayout from '@/layouts/default';
 import FloodNews from './news';
 import axios from 'axios';
 import FloodComponent from '@/components/flood';
-import PhoneComponent from '@/components/phone';
 import DonateComponent from '@/components/donate';
 import LongdoMap from '@/components/map';
+import PhoneComponent from '@/components/phone';
 
 export const getStaticProps = async () => {
   let articles = [];
@@ -124,8 +124,32 @@ export default function IndexPage({ articles }: any) {
         </div>
       </section>
       <FloodComponent articles={articles} max={3} />
-      <PhoneComponent />
-      <DonateComponent />
+      <div className="text-center mb-5">
+        <Link
+          href={`/news`}
+          target="_blank"
+        >
+          <Button className='mb-5'>ดูข่าวเพิ่มเติม</Button>
+        </Link>
+      </div>
+      <PhoneComponent max={10} />
+      <div className="text-center my-5">
+        <Link
+          href={`/phone`}
+          target="_blank"
+        >
+          <Button>ดูความช่วยเหลือเพิ่มเติม</Button>
+        </Link>
+      </div>
+      <DonateComponent max={10}/>
+      <div className="text-center my-5">
+        <Link
+          href={`/donate`}
+          target="_blank"
+        >
+          <Button>ดูศูนย์รับบริจาคเพิ่มเติม</Button>
+        </Link>
+      </div>
       <LongdoMap />
     </DefaultLayout>
   );
