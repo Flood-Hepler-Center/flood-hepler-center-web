@@ -22,7 +22,6 @@ import {
 } from '@nextui-org/table';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import './custom-style.css';
 
 export default function App() {
   const [selectedKeys, setSelectedKeys] = useState('ทั้งหมด');
