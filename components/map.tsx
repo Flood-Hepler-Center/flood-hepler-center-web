@@ -1,4 +1,4 @@
-import { getWaterLevel } from "@/util/calulate";
+import { getWaterLevel } from "@/src/util/calulate";
 import { useEffect } from "react";
 
 const LongdoMap = () => {
