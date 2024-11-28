@@ -18,7 +18,7 @@ export default function DefaultLayout({
       </main>
       <footer className='w-full flex items-center justify-center py-3'>
         <span className='text-default-600'>Powered by</span>
-        <p className='text-primary'> lnwXsoE</p>
+        <p className='ml-1 text-primary'> lnwXsoE</p>
       </footer>
     </div>
   );

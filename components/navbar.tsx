@@ -15,7 +15,7 @@ import clsx from 'clsx';
 
 import { siteConfig } from '@/config/site';
 import { ThemeSwitch } from '@/components/theme-switch';
-import { HeartFilledIcon, SearchIcon } from '@/components/icons';
+import { HeartFilledIcon, LogoIcon } from '@/components/icons';
 
 export const Navbar = () => {
   return (
@@ -23,7 +23,7 @@ export const Navbar = () => {
       <NavbarContent className='basis-1/5 sm:basis-full' justify='start'>
         <NavbarBrand className='gap-3 max-w-fit'>
           <NextLink className='flex justify-start items-center gap-1' href='/'>
-            <p className='font-bold text-inherit'>SFHC</p>
+            <LogoIcon />
           </NextLink>
         </NavbarBrand>
         <div className='hidden lg:flex gap-4 justify-start ml-2'>
@@ -55,7 +55,7 @@ export const Navbar = () => {
           <Button
             isExternal
             as={Link}
-            className='text-md font-normal text-default-600 bg-default-100'
+            className='text-md font-normal text-default-600 bg-background'
             href={siteConfig.links.sponsor}
             startContent={<HeartFilledIcon className='text-danger' />}
             variant='flat'
@@ -71,7 +71,7 @@ export const Navbar = () => {
         <Button
           isExternal
           as={Link}
-          className='text-md font-normal text-default-600 bg-default-100'
+          className='text-md font-normal text-default-600 bg-background'
           href={siteConfig.links.sponsor}
           startContent={<HeartFilledIcon className='text-danger' />}
           variant='flat'
