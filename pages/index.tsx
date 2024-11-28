@@ -1,6 +1,5 @@
 import { title, subtitle } from '@/components/primitives';
 import DefaultLayout from '@/layouts/default';
-import LongdoMap from '@/components/map';
 
 export default function IndexPage() {
   return (
@@ -14,10 +13,6 @@ export default function IndexPage() {
           <div className={subtitle({ class: 'mt-4' })}>
             รวบรวมข้อมูลและทราบข่าวสารเกี่ยวกับน้ำท่วมภาคใต้ 2567
           </div>
-        </div>
-
-        <div className='flex w-full'>
-          <LongdoMap />
         </div>
       </section>
     </DefaultLayout>

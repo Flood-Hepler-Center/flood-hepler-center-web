@@ -13,8 +13,8 @@ export const siteConfig = {
       href: '/docs',
     },
     {
-      label: 'แผนที่ช่วยเหลือ',
-      href: '/pricing',
+      label: 'แผนที่ระดับน้ำ',
+      href: '/water-level',
     },
     {
       label: 'เบอร์โทรศัพท์',
