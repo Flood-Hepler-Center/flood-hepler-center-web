@@ -22,11 +22,13 @@
 		"@nextui-org/table": "^2.0.40",
 		"@nextui-org/theme": "2.2.11",
 		"@react-aria/visually-hidden": "3.8.12",
+		"axios": "^1.7.8",
 		"clsx": "2.1.1",
 		"framer-motion": "~11.1.1",
 		"intl-messageformat": "^10.5.0",
 		"next": "14.2.4",
 		"next-themes": "^0.2.1",
+		"puppeteer": "^23.9.0",
 		"react": "18.3.1",
 		"react-dom": "18.3.1"
 	},
