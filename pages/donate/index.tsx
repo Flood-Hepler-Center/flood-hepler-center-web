@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
-import { debounce } from 'lodash';
-import { FilterIcon, PhoneIcon } from '@/components/icons';
-import { title } from '@/components/primitives';
-import { DONATION } from '@/data';
-import DefaultLayout from '@/layouts/default';
+import { useEffect } from "react";
+import { debounce } from "lodash";
+import { FilterIcon, PhoneIcon } from "@/components/icons";
+import { title } from "@/components/primitives";
+import { DONATION } from "@/data";
+import DefaultLayout from "@/layouts/default";
 import {
   Dropdown,
   DropdownTrigger,
@@ -11,7 +11,7 @@ import {
   DropdownItem,
   Button,
   Input,
-} from '@nextui-org/react';
+} from "@nextui-org/react";
 import {
   Table,
   TableHeader,
@@ -19,25 +19,25 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from '@nextui-org/table';
-import Link from 'next/link';
-import { useMemo, useState } from 'react';
+} from "@nextui-org/table";
+import Link from "next/link";
+import { useMemo, useState } from "react";
 
 export default function App() {
-  const [selectedKeys, setSelectedKeys] = useState('ทั้งหมด');
+  const [selectedKeys, setSelectedKeys] = useState("ทั้งหมด");
 
   const uniqueLocation = DONATION.map((item) => item.name).filter(
     (value, index, self) => self.indexOf(value) === index
   );
 
   const filteredPhoneNumber = useMemo(() => {
-    if (selectedKeys === 'ทั้งหมด') {
+    if (selectedKeys === "ทั้งหมด") {
       return DONATION;
     }
     return DONATION.filter((item) => item.name === selectedKeys);
   }, [selectedKeys]);
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = debounce((term: any) => {
     setSearchTerm(term);
@@ -62,34 +62,34 @@ export default function App() {
 
   return (
     <DefaultLayout>
-      <section className='flex flex-col items-center justify-center gap-4 py-8 md:py-10'>
-        <div className='inline-block w-full text-center justify-center'>
+      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+        <div className="inline-block w-full text-center justify-center">
           <h1 className={title()}>รวมศูนย์รับบริจาค</h1>
         </div>
-        <div className='flex w-full justify-center text-lg'>
-          <div className='w-full'>
+        <div className="flex w-full justify-center text-lg">
+          <div className="w-full">
             <Input
               onChange={handleInputChange}
-              type='email'
-              label='ค้นหาชื่อ'
+              type="email"
+              label="ค้นหาชื่อ"
             />
           </div>
-          <div className='flex ml-3 items-center'>
+          {/* <div className="flex ml-3 items-center">
             <FilterIcon />
             <Dropdown>
               <DropdownTrigger>
-                <Button variant='bordered' className='capitalize'>
+                <Button variant="bordered" className="capitalize">
                   {selectedKeys}
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
-                aria-label='Single selection example'
-                variant='flat'
+                aria-label="Single selection example"
+                variant="flat"
                 disallowEmptySelection
-                selectionMode='single'
+                selectionMode="single"
                 selectedKeys={selectedKeys}
                 onSelectionChange={(keys: any) =>
-                  setSelectedKeys(Array.from(keys).join(', '))
+                  setSelectedKeys(Array.from(keys).join(", "))
                 }
               >
                 {uniqueLocation.map((item, index) => (
@@ -97,32 +97,43 @@ export default function App() {
                 ))}
               </DropdownMenu>
             </Dropdown>
-          </div>
+          </div> */}
         </div>
         <Table
-          aria-label='contact helper phone number table'
-          className='mt-2'
+          aria-label="contact helper phone number table"
+          className="mt-2"
           isStriped
         >
           <TableHeader>
-            <TableColumn>ชื่อ</TableColumn>
-            <TableColumn>เลขที่บัญชี</TableColumn>
+            <TableColumn>ผู้รับบริกาค</TableColumn>
             <TableColumn>ข้อมูลเพิ่มเติม</TableColumn>
           </TableHeader>
           <TableBody>
             {filteredByName.map((item, index) => (
               <TableRow key={index}>
-                <TableCell>{item.name}</TableCell>
-                <TableCell>{item.detail}</TableCell>
+                <TableCell>
+                  <div className="text-bold pt-2">{item.name}</div>
+                  <div className="py-2">{item.detail}</div>
+                  <div className="pb-2">{item.bankAccount}</div> 
+                </TableCell>
                 <TableCell>
                   <Link href={`${item.link}`} passHref target="_blank">
-                    <div>เยี่ยมชม</div>
+                    <Button>เยี่ยมชม</Button>
                   </Link>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
+        <div className="text-center">
+          <Link
+            href={`https://forms.gle/DrPcdjGQpLtGjian9`}
+            passHref
+            target="_blank"
+          >
+            <Button>เพิ่มรายชื่อผู้บริจาค</Button>
+          </Link>
+        </div>
       </section>
     </DefaultLayout>
   );
