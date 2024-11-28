@@ -13,16 +13,20 @@ export const siteConfig = {
     //   href: '/request',
     // },
     {
+      label: 'ติดต่อขอความช่วยเหลือ',
+      href: '/phone',
+    },
+    {
+      label: 'บริจาค',
+      href: '/donate',
+    },
+    {
       label: 'ข่าวสาร',
       href: '/news',
     },
     {
       label: 'แผนที่ระดับน้ำ',
       href: '/water-level',
-    },
-    {
-      label: 'เบอร์โทรศัพท์',
-      href: '/phone',
     },
   ],
   links: {

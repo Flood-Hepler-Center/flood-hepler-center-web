@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { debounce } from 'lodash';
 import { FilterIcon, PhoneIcon } from '@/components/icons';
 import { title } from '@/components/primitives';
-import { PHONE_NUMBER } from '@/data';
+import { DONATION } from '@/data';
 import DefaultLayout from '@/layouts/default';
 import {
   Dropdown,
@@ -26,15 +26,15 @@ import { useMemo, useState } from 'react';
 export default function App() {
   const [selectedKeys, setSelectedKeys] = useState('ทั้งหมด');
 
-  const uniqueLocation = PHONE_NUMBER.map((item) => item.location).filter(
+  const uniqueLocation = DONATION.map((item) => item.name).filter(
     (value, index, self) => self.indexOf(value) === index
   );
 
   const filteredPhoneNumber = useMemo(() => {
     if (selectedKeys === 'ทั้งหมด') {
-      return PHONE_NUMBER;
+      return DONATION;
     }
-    return PHONE_NUMBER.filter((item) => item.location === selectedKeys);
+    return DONATION.filter((item) => item.name === selectedKeys);
   }, [selectedKeys]);
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -64,14 +64,14 @@ export default function App() {
     <DefaultLayout>
       <section className='flex flex-col items-center justify-center gap-4 py-8 md:py-10'>
         <div className='inline-block w-full text-center justify-center'>
-          <h1 className={title()}>ติดต่อความช่วยเหลือ</h1>
+          <h1 className={title()}>รวมศูนย์รับบริจาค</h1>
         </div>
         <div className='flex w-full justify-center text-lg'>
           <div className='w-full'>
             <Input
               onChange={handleInputChange}
               type='email'
-              label='ค้นหาเบอร์โทรศัพท์'
+              label='ค้นหาชื่อ'
             />
           </div>
           <div className='flex ml-3 items-center'>
@@ -106,17 +106,17 @@ export default function App() {
         >
           <TableHeader>
             <TableColumn>ชื่อ</TableColumn>
-            <TableColumn>เบอร์โทรศัพท์</TableColumn>
-            <TableColumn> </TableColumn>
+            <TableColumn>เลขที่บัญชี</TableColumn>
+            <TableColumn>ข้อมูลเพิ่มเติม</TableColumn>
           </TableHeader>
           <TableBody>
             {filteredByName.map((item, index) => (
               <TableRow key={index}>
                 <TableCell>{item.name}</TableCell>
-                <TableCell>{item.phoneNo}</TableCell>
+                <TableCell>{item.detail}</TableCell>
                 <TableCell>
-                  <Link href={`tel:${item.phoneNo}`} passHref>
-                    <PhoneIcon />
+                  <Link href={`${item.link}`} passHref target="_blank">
+                    <div>เยี่ยมชม</div>
                   </Link>
                 </TableCell>
               </TableRow>
