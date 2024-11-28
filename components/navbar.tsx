@@ -17,13 +17,7 @@ import clsx from 'clsx';
 
 import { siteConfig } from '@/config/site';
 import { ThemeSwitch } from '@/components/theme-switch';
-import {
-  TwitterIcon,
-  GithubIcon,
-  DiscordIcon,
-  HeartFilledIcon,
-  SearchIcon,
-} from '@/components/icons';
+import { HeartFilledIcon, SearchIcon } from '@/components/icons';
 
 export const Navbar = () => {
   const searchInput = (
@@ -78,15 +72,6 @@ export const Navbar = () => {
         justify='end'
       >
         <NavbarItem className='hidden sm:flex gap-2'>
-          <Link isExternal href={siteConfig.links.twitter} title='Twitter'>
-            <TwitterIcon className='text-default-500' />
-          </Link>
-          <Link isExternal href={siteConfig.links.discord} title='Discord'>
-            <DiscordIcon className='text-default-500' />
-          </Link>
-          <Link isExternal href={siteConfig.links.github} title='GitHub'>
-            <GithubIcon className='text-default-500' />
-          </Link>
           <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className='hidden lg:flex'>{searchInput}</NavbarItem>
@@ -99,15 +84,12 @@ export const Navbar = () => {
             startContent={<HeartFilledIcon className='text-danger' />}
             variant='flat'
           >
-            Sponsor
+            สนับสนุน
           </Button>
         </NavbarItem>
       </NavbarContent>
 
       <NavbarContent className='sm:hidden basis-1 pl-4' justify='end'>
-        <Link isExternal href={siteConfig.links.github}>
-          <GithubIcon className='text-default-500' />
-        </Link>
         <ThemeSwitch />
         <NavbarMenuToggle />
       </NavbarContent>
@@ -115,13 +97,13 @@ export const Navbar = () => {
       <NavbarMenu>
         {searchInput}
         <div className='mx-4 mt-2 flex flex-col gap-2'>
-          {siteConfig.navMenuItems.map((item, index) => (
+          {siteConfig.navItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
                 color={
                   index === 2
                     ? 'primary'
-                    : index === siteConfig.navMenuItems.length - 1
+                    : index === siteConfig.navItems.length - 1
                       ? 'danger'
                       : 'foreground'
                 }
