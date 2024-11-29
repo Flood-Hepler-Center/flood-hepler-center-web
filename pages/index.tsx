@@ -74,16 +74,18 @@ export default function IndexPage({ articles }: any) {
           <div className='hidden md:flex md:justify-center w-full mb-3 '>
             <LogoIcon width={200} height={80} />
           </div>
-          <span className={title()}>ศูนย์&nbsp;</span>
-          <span className={title({ color: 'pink' })}>ช่วยเหลือ&nbsp;</span>
+          <span className={title({ size: 'lg' })}>ศูนย์&nbsp;</span>
+          <span className={title({ color: 'pink', size: 'lg' })}>
+            ช่วยเหลือ&nbsp;
+          </span>
           <br />
-          <span className={title()}>น้ำท่วมภาคใต้ 2567</span>
-          <div className={subtitle({ class: 'mt-4 font-semibold' })}>
+          <span className={title({ size: 'lg' })}>น้ำท่วมภาคใต้ 2567</span>
+          <div className={subtitle({ class: 'mt-10 font-semibold leading-7' })}>
             รวบรวมข้อมูลและทราบข่าวสารเกี่ยวกับน้ำท่วมภาคใต้ปี 2567
           </div>
           <Card
             isBlurred
-            className='border-none bg-background/60 dark:bg-default-100/50 max-w-[610px] mt-4 mb-2'
+            className='border-none bg-background/60 dark:bg-default-100/50 max-w-[610px] mt-4 mb-6'
             shadow='sm'
           >
             <CardBody>
@@ -101,7 +103,7 @@ export default function IndexPage({ articles }: any) {
                 <div className='flex flex-col col-span-6 md:col-span-8'>
                   <div className='flex justify-between items-start'>
                     <div className='flex flex-col gap-0'>
-                      <h3 className='font-semibold italic text-foreground/90 text-center md:text-start'>
+                      <h3 className='font-medium italic text-foreground/90 text-center md:text-start text-sm'>
                         ที่ผ่านมาเราเคยเผชิญกับสถานการณ์ที่คาดไม่ถึง
                         ทั้งภัยพิบัติ น้ำท่วม และปัญหาต่างๆ ที่เกิดขึ้นในภาคใต้
                         ทีมงานของเรามุ่งมั่นที่จะตอบสนองต่อสถานการณ์เหล่านี้ได้ทันท่วงที
@@ -112,7 +114,7 @@ export default function IndexPage({ articles }: any) {
               </div>
             </CardBody>
           </Card>
-          <div className='text-sm items-start justify-start text-start mb-4'>
+          <div className='text-sm items-start justify-start text-start mb-8'>
             "เว็บไซต์นี้สร้างขึ้นเพื่อเป็นพื้นที่ของความหวังสำหรับผู้ประสบภัยน้ำท่วมในภาคใต้
             เรารวบรวมข้อมูลสำคัญ
             <br />
@@ -121,27 +123,32 @@ export default function IndexPage({ articles }: any) {
             และติดตามข่าวสารล่าสุด เราเชื่อว่าด้วยความร่วมมือและกำลังใจจากทุกคน
             เราจะผ่านพ้นวิกฤตนี้ไปด้วยกัน"
           </div>
+          <div className='text-center'>
+            <a href='/request'>
+              <Button
+                fullWidth
+                color='danger'
+                className='text-xl md:text-4xl h-12'
+              >
+                แจ้งขอความช่วยเหลือ
+              </Button>
+            </a>
+          </div>
+          <div className='text-center'>
+            <a href='/helper'>
+              <div
+                className={subtitle({ class: 'mt-4 font-semibold underline' })}
+              >
+                ดูรายชื่อผู้ขอความช่วยเหลือ
+              </div>
+            </a>
+          </div>
         </div>
       </section>
-      <div className='text-center'>
-        <a href='/request'>
-          <Button fullWidth color='danger' className='text-4xl h-12'>
-            แจ้งขอความช่วยเหลือ
-          </Button>
-        </a>
-      </div>
-      <div className='text-center'>
-        <div className={subtitle({ class: 'mt-4 font-semibold' })}>หรือ</div>
-      </div>
-      <div className='text-center'>
-        <a href='/helper'>
-          <Button size='lg'>ดูรายชื่อผู้ขอความช่วยเหลือ</Button>
-        </a>
-      </div>
       <FloodComponent articles={articles} max={3} />
       <div className='text-center mb-5'>
         <Link href={`/news`} target='_blank'>
-          <Button size='lg' className='mb-5'>
+          <Button size='lg' className='bg-surface'>
             ดูข่าวเพิ่มเติม
           </Button>
         </Link>
@@ -149,13 +156,17 @@ export default function IndexPage({ articles }: any) {
       <PhoneComponent max={10} />
       <div className='text-center my-5'>
         <Link href={`/phone`} target='_blank'>
-          <Button size='lg'>ดูความช่วยเหลือเพิ่มเติม</Button>
+          <Button size='lg' className='bg-surface'>
+            ดูความช่วยเหลือเพิ่มเติม
+          </Button>
         </Link>
       </div>
       <DonateComponent max={10} />
       <div className='text-center my-5'>
         <Link href={`/donate`} target='_blank'>
-          <Button size='lg'>ดูศูนย์รับบริจาคเพิ่มเติม</Button>
+          <Button size='lg' className='bg-surface'>
+            ดูศูนย์รับบริจาคเพิ่มเติม
+          </Button>
         </Link>
       </div>
       <LongdoMap />
