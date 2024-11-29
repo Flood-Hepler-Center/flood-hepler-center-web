@@ -51,7 +51,7 @@ const GoogleSheetPage = () => {
           (row: any) =>
             row["ชื่อที่ได้รับความช่วยเหลือ (ต้องตรงกับที่แจ้งขอความช่วยเหลือ)"]
         );
-        console.log(processedSuccessData, successData)
+        console.log(sheetData)
         setSuccessData(processedSuccessData);
 
         setData(processedData);
@@ -204,6 +204,9 @@ const GoogleSheetPage = () => {
                   <p className="text-md mb-2">ที่อยู่: {row["fullAddress"]}</p>
                   <p className="text-md">
                     สิ่งที่ต้องการช่วย: {row["สิ่งที่ต้องการให้ช่วยเหลือ"]}
+                  </p>
+                  <p className="text-md mt-2">
+                    เวลาที่ขอความช่วยเหลือ: {row["ประทับเวลา"]}
                   </p>
                 </Card>
               ))}
