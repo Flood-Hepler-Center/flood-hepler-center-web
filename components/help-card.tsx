@@ -43,7 +43,7 @@ export default function HelpCardComponent({
           size='sm'
           variant={'bordered'}
         >
-          {province}
+          #{province}
         </Button>
       </CardHeader>
       <div className='px-3 py-2 text-small'>
