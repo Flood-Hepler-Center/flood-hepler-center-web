@@ -17,6 +17,10 @@ export const siteConfig = {
       href: '/helper',
     },
     {
+      label: 'ข่าวสารจากประชาชน',
+      href: '/reporter',
+    },
+    {
       label: 'เบอร์จำเป็น',
       href: '/phone',
     },
