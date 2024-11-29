@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { debounce } from "lodash";
-import { FilterIcon, PhoneIcon } from "@/components/icons";
-import { title } from "@/components/primitives";
-import { PHONE_NUMBER } from "@/data";
+import { useEffect } from 'react';
+import { debounce } from 'lodash';
+import { FilterIcon, PhoneIcon } from '@/components/icons';
+import { title } from '@/components/primitives';
+import { PHONE_NUMBER } from '@/data';
 import {
   Dropdown,
   DropdownTrigger,
@@ -10,7 +10,7 @@ import {
   DropdownItem,
   Button,
   Input,
-} from "@nextui-org/react";
+} from '@nextui-org/react';
 import {
   Table,
   TableHeader,
@@ -18,25 +18,25 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from "@nextui-org/table";
-import Link from "next/link";
-import { useMemo, useState } from "react";
+} from '@nextui-org/table';
+import Link from 'next/link';
+import { useMemo, useState } from 'react';
 
 const PhoneComponent = ({ max }: any) => {
-  const [selectedKeys, setSelectedKeys] = useState("ทั้งหมด");
+  const [selectedKeys, setSelectedKeys] = useState('ทั้งหมด');
 
   const uniqueLocation = PHONE_NUMBER.map((item) => item.location).filter(
     (value, index, self) => self.indexOf(value) === index
   );
 
   const filteredPhoneNumber = useMemo(() => {
-    if (selectedKeys === "ทั้งหมด") {
+    if (selectedKeys === 'ทั้งหมด') {
       return PHONE_NUMBER;
     }
     return PHONE_NUMBER.filter((item) => item.location === selectedKeys);
   }, [selectedKeys]);
 
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = debounce((term: any) => {
     setSearchTerm(term);
@@ -60,34 +60,34 @@ const PhoneComponent = ({ max }: any) => {
   };
 
   return (
-    <section className="flex flex-col items-center justify-center gap-4 mt-12">
-      <div className="inline-block w-full text-center justify-center">
+    <section className='flex flex-col items-center justify-center gap-4 mt-12'>
+      <div className='inline-block w-full text-center justify-center mb-12'>
         <h1 className={title()}>เบอร์ติดต่อขอความช่วยเหลือ</h1>
       </div>
-      <div className="flex w-full justify-center text-lg">
-        <div className="w-full">
+      <div className='flex w-full justify-center text-lg'>
+        <div className='w-full'>
           <Input
             onChange={handleInputChange}
-            type="email"
-            label="ค้นหาเบอร์โทรศัพท์"
+            type='email'
+            label='ค้นหาเบอร์โทรศัพท์'
           />
         </div>
-        <div className="flex ml-3 items-center">
+        <div className='flex ml-3 items-center'>
           <FilterIcon />
           <Dropdown>
             <DropdownTrigger>
-              <Button variant="bordered" className="capitalize">
+              <Button variant='bordered' className='capitalize'>
                 {selectedKeys}
               </Button>
             </DropdownTrigger>
             <DropdownMenu
-              aria-label="Single selection example"
-              variant="flat"
+              aria-label='Single selection example'
+              variant='flat'
               disallowEmptySelection
-              selectionMode="single"
+              selectionMode='single'
               selectedKeys={selectedKeys}
               onSelectionChange={(keys: any) =>
-                setSelectedKeys(Array.from(keys).join(", "))
+                setSelectedKeys(Array.from(keys).join(', '))
               }
             >
               {uniqueLocation.map((item, index) => (
@@ -98,8 +98,8 @@ const PhoneComponent = ({ max }: any) => {
         </div>
       </div>
       <Table
-        aria-label="contact helper phone number table"
-        className="mt-2"
+        aria-label='contact helper phone number table'
+        className='mt-2'
         isStriped
       >
         <TableHeader>
@@ -124,17 +124,17 @@ const PhoneComponent = ({ max }: any) => {
         </TableBody>
       </Table>
       {!max ? (
-        <div className="text-center">
+        <div className='text-center'>
           <Link
             href={`https://forms.gle/DrPcdjGQpLtGjian9`}
             passHref
-            target="_blank"
+            target='_blank'
           >
             <Button>เพิ่มรายชื่อผู้ช่วยเหลือ</Button>
           </Link>
         </div>
       ) : (
-        ""
+        ''
       )}
     </section>
   );

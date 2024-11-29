@@ -93,7 +93,7 @@ const LongdoMap = () => {
 
   return (
     <section className='flex flex-col items-center justify-center mt-12'>
-      <div className='inline-block max-w-lg text-center justify-center'>
+      <div className='inline-block max-w-lg text-center justify-center mb-12'>
         <h1 className={title()}>แผนที่ระดับน้ำ</h1>
       </div>
       <div className='flex w-full my-5'>

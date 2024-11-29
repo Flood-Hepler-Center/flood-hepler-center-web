@@ -6,15 +6,15 @@ const FloodComponent = ({ articles, max }: any) => {
     max !== undefined ? articles?.slice(0, max) : articles;
   return (
     <section className='flex flex-col items-center justify-center gap-4 py-8 md:py-10 mt-12'>
-      <div className='inline-block w-full text-center justify-center'>
+      <div className='inline-block w-full text-center justify-center mb-12'>
         <h1 className={title()}>ข่าวน้ำท่วมล่าสุด</h1>
       </div>
 
-      <main className='container mx-auto p-6'>
+      <main className='container mx-auto w-full '>
         {articles.length > 0 ? (
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
             {articlesWithMax.map((article: any, index: any) => (
-              <Card key={index}>
+              <Card className='shadow-lg' key={index}>
                 {article.image && (
                   <img
                     src={article.image}
@@ -32,7 +32,7 @@ const FloodComponent = ({ articles, max }: any) => {
                     href={article.url}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='inline-block mt-4 hover:underline'
+                    className='inline-block font-bold italic mt-4 hover:underline'
                   >
                     อ่านต่อ →
                   </a>

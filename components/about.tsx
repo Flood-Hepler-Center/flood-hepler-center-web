@@ -46,7 +46,7 @@ export default function AboutComponent() {
       <div className='inline-block w-full text-center justify-center'>
         <h1 className={title()}>เกี่ยวกับเรา</h1>
         <div>
-          <h2 className='text-default-500 italic mt-4 md:text-medium text-start'>
+          <h2 className='text-default-500 italic mt-4 text-sm md:text-md text-start'>
             "เราเกิดและโตใน 3 จังหวัดชายแดนภาคใต้...
             <div className='mt-2' />
             และถึงแม้ตอนนี้จะทำงานอยู่ต่างจังหวัด
@@ -60,15 +60,16 @@ export default function AboutComponent() {
             ขอบคุณครับ..."
           </h2>
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mt-8'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mt-8'>
           {info.map((item, index) => (
             <Card key={index} className='py-4'>
               <CardHeader className='pb-0 pt-2 px-4 flex-col items-start'>
-                <p className='text-tiny uppercase font-bold'>{item.location}</p>
-                <small className='text-default-500'>{item.role}</small>
-                <Link href={item.fb} passHref>
-                  <h4 className='font-bold text-large'>{item.name}</h4>
-                </Link>
+                <h4 className='mb-2 font-bold text-large'>{item.name}</h4>
+                <p className='text-small uppercase font-bold'>
+                  {item.location}
+                </p>
+                <span className='text-default-500 text-tiny'>{item.role}</span>
+                <Link href={item.fb} passHref></Link>
               </CardHeader>
               <CardBody className='overflow-visible py-2'>
                 <Image

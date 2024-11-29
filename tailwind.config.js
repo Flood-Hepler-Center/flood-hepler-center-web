@@ -15,6 +15,33 @@ module.exports = {
         mono: ['var(--font-mono)'],
         helve: ['var(--font-helve)'],
       },
+      lineHeight: {
+        3: '0.75rem',
+        4: '1rem',
+        5: '1.25rem',
+        6: '1.5rem',
+        7: '1.75rem',
+        8: '2rem',
+        9: '2.25rem',
+        10: '2.3rem',
+        11: '2.7rem',
+        12: '3rem',
+        13: '3.3rem',
+        14: '3.5rem',
+        15: '3.7rem',
+      },
+    },
+    fontSize: {
+      sm: '1.2rem',
+      base: '1.4rem',
+      md: '1.6rem',
+      lg: '1.8rem',
+      xl: '1.9rem',
+      '2xl': '1.963rem',
+      '3xl': '2.153rem',
+      '4xl': '2.441rem',
+      '5xl': '3.252rem',
+      '6xl': '3.652rem',
     },
   },
   darkMode: 'class',
@@ -22,15 +49,15 @@ module.exports = {
     nextui({
       layout: {
         fontSize: {
-          tiny: '1rem', // text-tiny
-          small: '1.25rem', // text-small
-          medium: '1.4rem', // text-medium
+          tiny: '1.3rem', // text-tiny
+          small: '1.4rem', // text-small
+          medium: '1.6rem', // text-medium
           large: '2rem', // text-large
         },
         lineHeight: {
           tiny: '1rem', // text-tiny
           small: '1.25rem', // text-small
-          medium: '1.5rem', // text-medium
+          medium: '1.3rem', // text-medium
           large: '1.5rem', // text-large
         },
         radius: {
