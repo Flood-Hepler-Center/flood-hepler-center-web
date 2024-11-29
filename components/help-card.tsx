@@ -8,6 +8,7 @@ import {
 } from '@nextui-org/react';
 
 interface HelpCardProps {
+  id: number;
   name: string;
   province: string;
   tel: string;
@@ -18,18 +19,19 @@ interface HelpCardProps {
 }
 
 export default function HelpCardComponent({
+  id,
   name,
   province,
   tel,
   need,
   address,
   createdAt,
-  isSuccess
+  isSuccess,
 }: HelpCardProps) {
   return (
-    <Card className='w-full py-2 justify-between'>
-      <CardHeader className='justify-between'>
-        <div className='flex gap-5'>
+    <Card className='w-full py-3 justify-between'>
+      <CardHeader className='gap-2'>
+        <div className='flex gap-5 w-3/4'>
           <div className='flex flex-col gap-1 items-start justify-center'>
             <h4 className='text-small font-semibold leading-none text-default-600'>
               {name}
@@ -39,20 +41,28 @@ export default function HelpCardComponent({
             </div>
           </div>
         </div>
-
-        <Button
-          className={
-            isSuccess
-              ? 'bg-success text-foreground'
-              : 'bg-transparent text-foreground border-default-200'
-          }
-          radius='full'
-          size='sm'
-          color={isSuccess ? 'success' : 'default'}
-          variant={isSuccess ? 'light' : 'bordered'}
-        >
-          #{isSuccess ? 'ช่วยเหลือแล้ว' : province}
-        </Button>
+        <div className='text-end flex justify-end'>
+          <Button
+            className={
+              isSuccess
+                ? 'bg-success text-foreground'
+                : 'bg-transparent text-foreground border-default-200'
+            }
+            radius='full'
+            size='sm'
+            color={isSuccess ? 'success' : 'default'}
+            variant={isSuccess ? 'light' : 'bordered'}
+          >
+            #{isSuccess ? 'ช่วยเหลือแล้ว' : province}
+          </Button>
+          <div
+            className={
+              'absolute top-2 right-2 text-end border-default-200 px-1 text-default-400 italic rounded-xl'
+            }
+          >
+            #{id}
+          </div>
+        </div>
       </CardHeader>
       <div className='px-3 py-2 text-small'>
         <p>{need}</p>
