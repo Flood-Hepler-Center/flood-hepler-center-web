@@ -29,6 +29,7 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedProvince, setSelectedProvince] = useState("จังหวัดทั้งหมด");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc"); // Sorting state
   const [visibleItems, setVisibleItems] = useState(max || 0);
 
   const loaderRef = useRef<HTMLDivElement | null>(null);
@@ -38,10 +39,24 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
       try {
         const sheetData = await fetchGoogleSheet(MANUAL_REPORT_SHEET_URL);
 
-        const processedData = sheetData.map((row: any) => ({
-          ...row,
-          timestamp: new Date(row["ประทับเวลา"]).getTime(),
-        }));
+        const processedData = sheetData.map((row: any) => {
+          const [datePart, timePart] = row["ประทับเวลา"]?.split(", ") || [];
+          const [day, month, year] = datePart?.split("/")?.map(Number) || [];
+          const [hours, minutes, seconds] = timePart?.split(":")?.map(Number) || [];
+          const parsedDate = new Date(
+            year,
+            month - 1,
+            day,
+            hours,
+            minutes,
+            seconds
+          );
+
+          return {
+            ...row,
+            timestamp: isNaN(parsedDate.getTime()) ? null : parsedDate,
+          };
+        });
 
         setData(processedData);
         setFilteredData(processedData);
@@ -56,20 +71,28 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
   }, []);
 
   useEffect(() => {
-    const lowerSearchTerm = searchTerm.toLowerCase();
     let filtered = data.filter(
       (row: any) =>
         (selectedProvince === "จังหวัดทั้งหมด" ||
           row["จังหวัดที่อยู่"] === selectedProvince) &&
-        Object.values(row).join(" ").toLowerCase().includes(lowerSearchTerm)
+        Object.values(row).join(" ").toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    // Apply sorting
+    filtered = filtered
+      .filter((row: any) => row.timestamp !== null) // Exclude invalid dates
+      .sort((a: any, b: any) =>
+        sortOrder === "asc"
+          ? a.timestamp.getTime() - b.timestamp.getTime()
+          : b.timestamp.getTime() - a.timestamp.getTime()
+      );
 
     if (max) {
       filtered = filtered.slice(0, max); // Apply max limit only if max is provided
     }
 
     setFilteredData(filtered);
-  }, [searchTerm, selectedProvince, data, max]);
+  }, [searchTerm, selectedProvince, sortOrder, data, max]);
 
   // Infinite Scroll
   useEffect(() => {
@@ -136,6 +159,16 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
                     ))}
                 </DropdownMenu>
               </Dropdown>
+              <Button
+                variant="flat"
+                onClick={() =>
+                  setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
+                }
+              >
+                {sortOrder === "asc"
+                  ? "เรียงจากเก่าไปใหม่"
+                  : "เรียงจากใหม่ไปเก่า"}
+              </Button>
             </div>
           </div>
         </Card>
