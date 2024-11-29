@@ -9,36 +9,36 @@ export const siteConfig = {
       href: '/',
     },
     {
-      label: 'แจ้งความช่วยเหลือ',
+      label: 'ขอความช่วยเหลือ',
       href: '/request',
     },
     {
-      label: 'รายชื่อผู้ขอความช่วยเหลือ',
+      label: 'ผู้ต้องการความช่วยเหลือ',
       href: '/helper',
     },
     {
-      label: 'แจ้งข่าว',
+      label: 'แจ้งข่าวสาร',
       href: '/send-news',
     },
     {
-      label: 'ข่าวประชาชน',
+      label: 'ข่าวจากประชาชน',
       href: '/reporter',
     },
     {
-      label: 'เบอร์จำเป็น',
+      label: 'เบอร์ติดต่อ',
       href: '/phone',
     },
     {
-      label: 'บริจาค',
-      href: '/donate',
-    },
-    {
-      label: 'ข่าวสาร',
+      label: 'ข่าวจากสำนักข่าว',
       href: '/news',
     },
     {
       label: 'แผนที่ระดับน้ำ',
       href: '/water-level',
+    },
+    {
+      label: 'บริจาค',
+      href: '/donate',
     },
     {
       label: 'เกี่ยวกับเรา',
