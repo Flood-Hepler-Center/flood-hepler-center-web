@@ -153,7 +153,7 @@ export default function IndexPage({ articles }: any) {
       <div className="inline-block w-full text-center justify-center mb-12">
         <h1 className={title()}>ข่าวสารล่าสุดจากประชาชน</h1>
       </div>
-      <ManualReporterComponent max={9} showSearchFilters={false} />
+      <ManualReporterComponent max={6} showSearchFilters={false} />
       <div className="flex text-center my-8 gap-4 justify-center">
         <Link href={`/reporter`}>
           <Button size="lg" className="bg-surface">
