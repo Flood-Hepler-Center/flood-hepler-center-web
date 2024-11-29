@@ -80,7 +80,11 @@ export default function IndexPage({ articles }: any) {
           </span>
           <br />
           <span className={title({ size: 'lg' })}>น้ำท่วมภาคใต้ 2567</span>
-          <div className={subtitle({ class: 'mt-10 font-semibold leading-7' })}>
+          <div
+            className={subtitle({
+              class: 'mt-10 mb-10 font-semibold leading-7',
+            })}
+          >
             รวบรวมข้อมูลและทราบข่าวสารเกี่ยวกับน้ำท่วมภาคใต้ปี 2567
           </div>
           <Card
@@ -128,7 +132,7 @@ export default function IndexPage({ articles }: any) {
               <Button
                 fullWidth
                 color='danger'
-                className='text-xl md:text-4xl h-12'
+                className='text-xl md:text-4xl h-16'
               >
                 แจ้งขอความช่วยเหลือ
               </Button>
