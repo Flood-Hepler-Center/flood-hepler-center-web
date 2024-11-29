@@ -262,4 +262,22 @@ export const DONATION = [
     bankAccount: "ชื่อบัญชี มูลนิธิรักษ์ไทยธนาคาร",
     link: "https://www.facebook.com/100068326638949/posts/875365831417630/?mibextid=WC7FNe&rdid=VyOxEIQHmugrp8cP",
   },
+  {
+    name: "เทศบาลนครยะลา Yalacity",
+    detail: "เลขที่บัญชี 020241724463 ธนาคารเพื่อการเกษตรฯ (ธกส.) สาขายะลา",
+    bankAccount: "ชื่อบัญชี ช่วยเหลือผู้ประสบอุทกภัยเพื่อจัดซื้อเครื่องอุปโภคบริโภค",
+    link: "https://www.facebook.com/share/p/1Y954WYrnb/?mibextid=WC7FNe",
+  },
+  {
+    name: "สมาคมเยาวชนสานใจไทย สู่ใจใต้ ",
+    detail: "เลขที่บัญชี 169-2-78596-3 ธนาคารกสิกรไทย",
+    bankAccount: "ชื่อบัญชี สมาคมเยาวชนสานใจไทย สู่ใจใต้ ",
+    link: "https://www.facebook.com/share/p/19Y7cPpbTK/?mibextid=WC7FNe",
+  },
+  {
+    name: "มูลนิธิคนช่วยฅน",
+    detail: "เลขที่บัญชี 061-1-10425-3 ธนาคารอิสลาม",
+    bankAccount: "ชื่อบัญชี ช่วยเหลือผู้ประสบภัยและผู้ยากไร้มูลนิธิคนช่วยฅน",
+    link: "https://www.facebook.com/share/p/14y6Vr4ptX/?mibextid=WC7FNe",
+  },
 ];

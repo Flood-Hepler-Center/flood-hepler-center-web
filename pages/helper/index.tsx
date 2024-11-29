@@ -40,9 +40,9 @@ const GoogleSheetPage = () => {
         // Combine address fields into one column
         const processedData = sheetData.map((row: any) => ({
           ...row,
-          fullAddress: `${row["ที่อยู่ ที่ต้องการความช่วยเหลือ"] || ""}, ${
+          fullAddress: `${row["ที่อยู่ ที่ต้องการความช่วยเหลือ"] || ""} ${
             row["ตำบล ที่ต้องการความช่วยเหลือ"] || ""
-          }, ${row["อำเภอ ที่ต้องการความช่วยเหลือ"] || ""}, ${
+          } ${row["อำเภอ ที่ต้องการความช่วยเหลือ"] || ""} ${
             row["จังหวัด ที่ต้องการความช่วยเหลือ"] || ""
           }`,
         }));
@@ -51,7 +51,7 @@ const GoogleSheetPage = () => {
           (row: any) =>
             row["ชื่อที่ได้รับความช่วยเหลือ (ต้องตรงกับที่แจ้งขอความช่วยเหลือ)"]
         );
-        console.log(processedSuccessData, successData)
+        console.log(sheetData)
         setSuccessData(processedSuccessData);
 
         setData(processedData);
@@ -155,7 +155,7 @@ const GoogleSheetPage = () => {
                 </DropdownMenu>
               </Dropdown>
 
-              <Dropdown>
+              {/* <Dropdown>
                 <DropdownTrigger>
                   <Button variant="flat">{selectedDistrict}</Button>
                 </DropdownTrigger>
@@ -181,7 +181,7 @@ const GoogleSheetPage = () => {
                     <DropdownItem key={subdistrict}>{subdistrict}</DropdownItem>
                   ))}
                 </DropdownMenu>
-              </Dropdown>
+              </Dropdown> */}
             </div>
           </div>
         </Card>
@@ -204,6 +204,9 @@ const GoogleSheetPage = () => {
                   <p className="text-md mb-2">ที่อยู่: {row["fullAddress"]}</p>
                   <p className="text-md">
                     สิ่งที่ต้องการช่วย: {row["สิ่งที่ต้องการให้ช่วยเหลือ"]}
+                  </p>
+                  <p className="text-md mt-2">
+                    เวลาที่ขอความช่วยเหลือ: {row["ประทับเวลา"]}
                   </p>
                 </Card>
               ))}
