@@ -273,7 +273,7 @@ export const LogoIcon: React.FC<IconSvgProps> = (props) => {
       xmlns='http://www.w3.org/2000/svg'
       width={`${width}px`}
       height={`${height}px`}
-      viewBox='50 -50 729 350'
+      viewBox='50 -40 729 350'
       fill='none'
       {...props}
     >

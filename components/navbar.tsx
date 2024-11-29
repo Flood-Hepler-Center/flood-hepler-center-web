@@ -16,6 +16,7 @@ import clsx from 'clsx';
 import { siteConfig } from '@/config/site';
 import { ThemeSwitch } from '@/components/theme-switch';
 import { HeartFilledIcon, LogoIcon } from '@/components/icons';
+import { subtitle } from './primitives';
 
 export const Navbar = () => {
   return (
@@ -26,6 +27,18 @@ export const Navbar = () => {
             <LogoIcon />
           </NextLink>
         </NavbarBrand>
+        <NextLink
+          className='flex w-full items-center gap-1 text-start justify-cstartnter'
+          href='/'
+        >
+          <h4
+            className={
+              'hidden tracking-tight md:inline font-semibold from-[#FF72E1] to-[#F54C7A] text-md bg-clip-text text-transparent bg-gradient-to-b'
+            }
+          >
+            น้ำท่วมภาคใต้67.com
+          </h4>
+        </NextLink>
         {/* <div className='hidden md:flex gap-4 justify-start ml-2'>
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
