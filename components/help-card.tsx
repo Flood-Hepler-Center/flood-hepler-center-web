@@ -24,6 +24,7 @@ export default function HelpCardComponent({
   address,
   createdAt,
 }: HelpCardProps) {
+  const isSuccess = false;
   return (
     <Card className='w-full py-2 justify-between'>
       <CardHeader className='justify-between'>
@@ -37,13 +38,19 @@ export default function HelpCardComponent({
             </div>
           </div>
         </div>
+
         <Button
-          className={'bg-transparent text-foreground border-default-200'}
+          className={
+            isSuccess
+              ? 'bg-success text-foreground'
+              : 'bg-transparent text-foreground border-default-200'
+          }
           radius='full'
           size='sm'
-          variant={'bordered'}
+          color={isSuccess ? 'success' : 'default'}
+          variant={isSuccess ? 'light' : 'bordered'}
         >
-          #{province}
+          #{isSuccess ? 'ช่วยเหลือแล้ว' : province}
         </Button>
       </CardHeader>
       <div className='px-3 py-2 text-small'>
