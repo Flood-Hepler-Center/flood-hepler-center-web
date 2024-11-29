@@ -55,7 +55,7 @@ const DonateComponent = ({ max }: any) => {
 
   return (
     <section className='flex flex-col items-center justify-center gap-4 mt-12'>
-      <div className='inline-block w-full text-center justify-center'>
+      <div className='inline-block w-full text-center justify-center mb-12'>
         <h1 className={title()}>รวมศูนย์รับบริจาค</h1>
       </div>
       <div className='flex w-full justify-center text-lg'>
@@ -90,20 +90,20 @@ const DonateComponent = ({ max }: any) => {
         </TableBody>
       </Table>
       {!max ? (
-        <div className="text-center">
-        <Link
-          href={`https://forms.gle/Qjnbtruf8k8e4Bxi9`}
-          passHref
-          target='_blank'
-        >
-          <Button>เพิ่มรายชื่อผู้บริจาค</Button>
-        </Link>
+        <div className='text-center'>
+          <Link
+            href={`https://forms.gle/Qjnbtruf8k8e4Bxi9`}
+            passHref
+            target='_blank'
+          >
+            <Button>เพิ่มรายชื่อผู้บริจาค</Button>
+          </Link>
         </div>
       ) : (
-        ""
+        ''
       )}
     </section>
   );
-}
+};
 
 export default DonateComponent;

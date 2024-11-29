@@ -6,7 +6,7 @@ const FloodComponent = ({ articles, max }: any) => {
     max !== undefined ? articles?.slice(0, max) : articles;
   return (
     <section className='flex flex-col items-center justify-center gap-4 py-8 md:py-10 mt-12'>
-      <div className='inline-block w-full text-center justify-center'>
+      <div className='inline-block w-full text-center justify-center mb-12'>
         <h1 className={title()}>ข่าวน้ำท่วมล่าสุด</h1>
       </div>
 
