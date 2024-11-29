@@ -40,9 +40,9 @@ const GoogleSheetPage = () => {
         // Combine address fields into one column
         const processedData = sheetData.map((row: any) => ({
           ...row,
-          fullAddress: `${row["ที่อยู่ ที่ต้องการความช่วยเหลือ"] || ""}, ${
+          fullAddress: `${row["ที่อยู่ ที่ต้องการความช่วยเหลือ"] || ""} ${
             row["ตำบล ที่ต้องการความช่วยเหลือ"] || ""
-          }, ${row["อำเภอ ที่ต้องการความช่วยเหลือ"] || ""}, ${
+          } ${row["อำเภอ ที่ต้องการความช่วยเหลือ"] || ""} ${
             row["จังหวัด ที่ต้องการความช่วยเหลือ"] || ""
           }`,
         }));
@@ -155,7 +155,7 @@ const GoogleSheetPage = () => {
                 </DropdownMenu>
               </Dropdown>
 
-              <Dropdown>
+              {/* <Dropdown>
                 <DropdownTrigger>
                   <Button variant="flat">{selectedDistrict}</Button>
                 </DropdownTrigger>
@@ -181,7 +181,7 @@ const GoogleSheetPage = () => {
                     <DropdownItem key={subdistrict}>{subdistrict}</DropdownItem>
                   ))}
                 </DropdownMenu>
-              </Dropdown>
+              </Dropdown> */}
             </div>
           </div>
         </Card>
