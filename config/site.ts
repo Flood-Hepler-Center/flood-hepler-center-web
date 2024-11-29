@@ -17,7 +17,11 @@ export const siteConfig = {
       href: '/helper',
     },
     {
-      label: 'ข่าวสารจากประชาชน',
+      label: 'แจ้งข่าว',
+      href: '/send-news',
+    },
+    {
+      label: 'ข่าวประชาชน',
       href: '/reporter',
     },
     {
