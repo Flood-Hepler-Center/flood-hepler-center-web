@@ -17,7 +17,7 @@ export const siteConfig = {
       href: '/helper',
     },
     {
-      label: 'ติดต่อขอความช่วยเหลือ',
+      label: 'เบอร์ติดต่อขอความช่วยเหลือ',
       href: '/phone',
     },
     {

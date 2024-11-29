@@ -11,6 +11,7 @@ import {
 } from "@nextui-org/react";
 import { fetchGoogleSheet } from "@/src/util/fetchGoogleSheet";
 import DefaultLayout from "@/layouts/default";
+import { title } from "@/components/primitives";
 
 const GOOGLE_SHEET_URL =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vTkvS_fgba8jb9gz8AjNmvrTPKNNX7bQ3rLiRazabOnvW8tFAkRYlkJmMvUvXfeRGBca5BlowiZJEhG/pub?output=csv";
@@ -115,9 +116,11 @@ const GoogleSheetPage = () => {
   return (
     <DefaultLayout>
       <div className="p-4 max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold text-center mb-4">
-          รายการผู้ขอความช่วยเหลือ
+      <div className="text-center mb-4">
+      <h1 className={title()}>
+          ผู้ขอความช่วยเหลือ
         </h1>
+      </div>
 
         {/* Search and Filter Section */}
         <Card className="mb-4 p-4">
