@@ -67,7 +67,7 @@ export default function IndexPage({ articles }: any) {
   return (
     <DefaultLayout>
       <section className='flex flex-col items-center justify-center gap-4 py-8 md:py-10'>
-        <div className='inline-block max-w-xl text-center justify-center'>
+        <div className='inline-block max-w-4xl text-center justify-center'>
           <div className='flex justify-center w-full md:hidden mb-2'>
             <LogoIcon width={150} height={50} />
           </div>
@@ -85,7 +85,7 @@ export default function IndexPage({ articles }: any) {
           </div>
           <Card
             isBlurred
-            className='border-none bg-background/60 dark:bg-default-100/50 max-w-[610px] mt-4 mb-6'
+            className='border-none bg-background/60 dark:bg-default-100/50 w-full mt-4 mb-6'
             shadow='sm'
           >
             <CardBody>
@@ -103,7 +103,7 @@ export default function IndexPage({ articles }: any) {
                 <div className='flex flex-col col-span-6 md:col-span-8'>
                   <div className='flex justify-between items-start'>
                     <div className='flex flex-col gap-0'>
-                      <h3 className='font-medium italic text-foreground/90 text-center md:text-start text-sm'>
+                      <h3 className='font-medium italic text-foreground/90 text-center md:text-start text-sm md:text-md'>
                         ที่ผ่านมาเราเคยเผชิญกับสถานการณ์ที่คาดไม่ถึง
                         ทั้งภัยพิบัติ น้ำท่วม และปัญหาต่างๆ ที่เกิดขึ้นในภาคใต้
                         ทีมงานของเรามุ่งมั่นที่จะตอบสนองต่อสถานการณ์เหล่านี้ได้ทันท่วงที
@@ -114,7 +114,7 @@ export default function IndexPage({ articles }: any) {
               </div>
             </CardBody>
           </Card>
-          <div className='text-sm items-start justify-start text-start mb-8'>
+          <div className='text-sm items-start justify-start text-start mb-8 md:text-md'>
             "เว็บไซต์นี้สร้างขึ้นเพื่อเป็นพื้นที่ของความหวังสำหรับผู้ประสบภัยน้ำท่วมในภาคใต้
             เรารวบรวมข้อมูลสำคัญ
             <br />

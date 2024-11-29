@@ -79,7 +79,6 @@ const CustomGoogleForm = () => {
             <Input
               label='ชื่อ'
               name='entry_1084532222'
-              placeholder='ชื่อของคุณ'
               fullWidth
               value={formData.entry_1084532222}
               onChange={handleChange}
@@ -90,7 +89,6 @@ const CustomGoogleForm = () => {
             <Textarea
               label='ที่อยู่ (พอสังเขป)'
               name='entry_822736917'
-              placeholder='กรอกที่อยู่พอสังเขป'
               fullWidth
               value={formData.entry_822736917}
               onChange={handleChange}
@@ -101,7 +99,6 @@ const CustomGoogleForm = () => {
             <Input
               label='จังหวัด'
               name='entry_1679905954'
-              placeholder='กรอกจังหวัด'
               fullWidth
               value={formData.entry_1679905954}
               onChange={handleChange}
@@ -112,7 +109,6 @@ const CustomGoogleForm = () => {
             <Textarea
               label='สิ่งที่ต้องการให้ช่วยเหลือ'
               name='entry_1246982716'
-              placeholder='รายละเอียดสิ่งที่ต้องการให้ช่วยเหลือ'
               fullWidth
               value={formData.entry_1246982716}
               onChange={handleChange}
@@ -123,14 +119,17 @@ const CustomGoogleForm = () => {
             <Input
               label='เบอร์โทรติดต่อ'
               name='entry_615899162'
-              placeholder='เบอร์โทรศัพท์'
               fullWidth
               value={formData.entry_615899162}
               onChange={handleChange}
             />
           </div>
 
-          <Button type='submit' className='w-full' disabled={isSubmitting}>
+          <Button
+            type='submit'
+            className='w-full bg-surface'
+            disabled={isSubmitting}
+          >
             {isSubmitting ? 'กำลังส่ง...' : 'ส่งข้อมูล'}
           </Button>
         </form>
