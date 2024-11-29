@@ -62,7 +62,7 @@ const PhoneComponent = ({ max }: any) => {
   return (
     <section className='flex flex-col items-center justify-center gap-4 mt-12'>
       <div className='inline-block w-full text-center justify-center mb-12'>
-        <h1 className={title()}>เบอร์ติดต่อขอความช่วยเหลือ</h1>
+        <h1 className={title()}>เบอร์จำเป็น</h1>
       </div>
       <div className='flex w-full justify-center text-lg'>
         <div className='w-full'>

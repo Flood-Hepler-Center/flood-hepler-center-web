@@ -117,7 +117,7 @@ const CustomGoogleForm = () => {
 
           <div className='mb-4'>
             <Input
-              label='เบอร์โทรติดต่อ'
+              label='เบอร์โทร'
               name='entry_615899162'
               fullWidth
               value={formData.entry_615899162}
