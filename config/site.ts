@@ -8,10 +8,14 @@ export const siteConfig = {
       label: 'หน้าแรก',
       href: '/',
     },
-    // {
-    //   label: 'แจ้งความช่วยเหลือ',
-    //   href: '/request',
-    // },
+    {
+      label: 'แจ้งความช่วยเหลือ',
+      href: '/request',
+    },
+    {
+      label: 'รายชื่อผู้ขอความช่วยเหลือ',
+      href: '/helper',
+    },
     {
       label: 'ติดต่อขอความช่วยเหลือ',
       href: '/phone',
