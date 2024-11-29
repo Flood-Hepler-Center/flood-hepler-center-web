@@ -14,6 +14,7 @@ interface HelpCardProps {
   need: string;
   address: string;
   createdAt: string;
+  isSuccess: boolean;
 }
 
 export default function HelpCardComponent({
@@ -23,8 +24,8 @@ export default function HelpCardComponent({
   need,
   address,
   createdAt,
+  isSuccess
 }: HelpCardProps) {
-  const isSuccess = false;
   return (
     <Card className='w-full py-2 justify-between'>
       <CardHeader className='justify-between'>

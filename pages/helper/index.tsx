@@ -214,10 +214,10 @@ const GoogleSheetPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredData
               ?.slice(0, visibleItems)
-              .filter(
-                (row: any) =>
-                  !successData.includes(row["ชื่อ"]) && !!row["ชื่อ"]
-              )
+              // .filter(
+              //   (row: any) =>
+              //     !successData.includes(row["ชื่อ"]) && !!row["ชื่อ"]
+              // )
               .map((row: any, index: number) => (
                 <HelpCardComponent
                   key={index}
@@ -227,6 +227,7 @@ const GoogleSheetPage = () => {
                   name={row["ชื่อ"]}
                   address={row["ที่อยู่ ที่ต้องการความช่วยเหลือ"]}
                   province={row["จังหวัด ที่ต้องการความช่วยเหลือ"]}
+                  isSuccess={!!successData.includes(row["ชื่อ"])}
                 />
               ))}
           </div>
