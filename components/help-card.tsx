@@ -25,7 +25,7 @@ export default function HelpCardComponent({
   createdAt,
 }: HelpCardProps) {
   return (
-    <Card className='w-full py-2'>
+    <Card className='w-full py-2 justify-between'>
       <CardHeader className='justify-between'>
         <div className='flex gap-5'>
           <div className='flex flex-col gap-1 items-start justify-center'>
@@ -43,7 +43,7 @@ export default function HelpCardComponent({
           size='sm'
           variant={'bordered'}
         >
-          {province}
+          #{province}
         </Button>
       </CardHeader>
       <div className='px-3 py-2 text-small'>
