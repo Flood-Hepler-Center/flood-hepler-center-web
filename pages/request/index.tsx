@@ -38,7 +38,15 @@ const RequestHelperPage = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button className="text-white">ไปที่แบบฟอร์ม</Button>
+            <Button className="text-white">ไปที่แบบฟอร์มขอความช่วยเหลือ</Button>
+          </a>
+          <div className="my-4">หรือ</div>
+          <a
+            href="https://forms.gle/5JWL4qatByTEbBMw5"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button className="text-white">แจ้งเมื่อได้รับความช่วยเหลือแล้ว</Button>
           </a>
         </Card>
         <div className="my-5">

@@ -15,9 +15,12 @@ import { title } from "@/components/primitives";
 
 const GOOGLE_SHEET_URL =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vTkvS_fgba8jb9gz8AjNmvrTPKNNX7bQ3rLiRazabOnvW8tFAkRYlkJmMvUvXfeRGBca5BlowiZJEhG/pub?output=csv";
+const SUCCESS_GOOGLE_SHEET_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2sg3qEUtJ8mgBXt3PLT5zY89dSRahhiWmCtRvjk78IFvP2rwg-K7PWwYA9bVcLTEiv5egjQIjmdWQ/pub?output=csv";
 
 const GoogleSheetPage = () => {
   const [data, setData] = useState<any[]>([]);
+  const [successData, setSuccessData] = useState<any[]>([]);
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -32,6 +35,7 @@ const GoogleSheetPage = () => {
     const fetchData = async () => {
       try {
         const sheetData = await fetchGoogleSheet(GOOGLE_SHEET_URL);
+        const successData = await fetchGoogleSheet(SUCCESS_GOOGLE_SHEET_URL);
 
         // Combine address fields into one column
         const processedData = sheetData.map((row: any) => ({
@@ -42,6 +46,13 @@ const GoogleSheetPage = () => {
             row["จังหวัด ที่ต้องการความช่วยเหลือ"] || ""
           }`,
         }));
+
+        const processedSuccessData = successData.map(
+          (row: any) =>
+            row["ชื่อที่ได้รับความช่วยเหลือ (ต้องตรงกับที่แจ้งขอความช่วยเหลือ)"]
+        );
+        console.log(processedSuccessData, successData)
+        setSuccessData(processedSuccessData);
 
         setData(processedData);
         setFilteredData(processedData);
@@ -116,11 +127,9 @@ const GoogleSheetPage = () => {
   return (
     <DefaultLayout>
       <div className="p-4 max-w-4xl mx-auto">
-      <div className="text-center mb-4">
-      <h1 className={title()}>
-          ผู้ขอความช่วยเหลือ
-        </h1>
-      </div>
+        <div className="text-center mb-4">
+          <h1 className={title()}>ผู้ขอความช่วยเหลือ</h1>
+        </div>
 
         {/* Search and Filter Section */}
         <Card className="mb-4 p-4">
@@ -176,26 +185,30 @@ const GoogleSheetPage = () => {
             </div>
           </div>
         </Card>
-        {
-          !data.length ? (<div className="flex justify-center">
-          <Card>
-            <p className="text-lg text-center p-6">ไม่พบข้อมูลในตอนนี้</p>
-          </Card>
-        </div>) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {filteredData.map((row: any, index: number) => (
-            <Card key={index} className="p-4 shadow-md bg-white text-black">
-              <h3 className="font-bold text-lg">{row["ชื่อ"]}</h3>
-              <p className="text-md mb-2">เบอร์โทร: {row["เบอร์โทรติดต่อ"]}</p>
-              <p className="text-md mb-2">ที่อยู่: {row["fullAddress"]}</p>
-              <p className="text-md">
-                สิ่งที่ต้องการช่วย: {row["สิ่งที่ต้องการให้ช่วยเหลือ"]}
-              </p>
+        {!data.length ? (
+          <div className="flex justify-center">
+            <Card>
+              <p className="text-lg text-center p-6">ไม่พบข้อมูลในตอนนี้</p>
             </Card>
-          ))}
-        </div>
-        )
-        }
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {filteredData
+              ?.filter((data: any) => !successData.includes(data["ชื่อ"]) && !!data["ชื่อ"])
+              .map((row: any, index: number) => (
+                <Card key={index} className="p-4 shadow-md bg-white text-black">
+                  <h3 className="font-bold text-lg">{row["ชื่อ"]}</h3>
+                  <p className="text-md mb-2">
+                    เบอร์โทร: {row["เบอร์โทรติดต่อ"]}
+                  </p>
+                  <p className="text-md mb-2">ที่อยู่: {row["fullAddress"]}</p>
+                  <p className="text-md">
+                    สิ่งที่ต้องการช่วย: {row["สิ่งที่ต้องการให้ช่วยเหลือ"]}
+                  </p>
+                </Card>
+              ))}
+          </div>
+        )}
       </div>
     </DefaultLayout>
   );
