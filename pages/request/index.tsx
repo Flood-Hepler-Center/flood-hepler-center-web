@@ -1,4 +1,5 @@
 import { title } from "@/components/primitives";
+import CustomGoogleForm from "@/components/request-form";
 import DefaultLayout from "@/layouts/default";
 import { Card, Button } from "@nextui-org/react";
 import Link from "next/link";
@@ -30,16 +31,7 @@ const RequestHelperPage = () => {
           <h2 className="text-lg font-semibold mb-2">
             แบบฟอร์มขอความช่วยเหลือ
           </h2>
-          <p className="text-sm text-gray-700 mb-4">
-            คลิกปุ่มด้านล่างเพื่อกรอกแบบฟอร์มคำขอความช่วยเหลือ
-          </p>
-          <a
-            href="https://forms.gle/M3wxWuUswvVntSmK7"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button className="text-white">ไปที่แบบฟอร์มขอความช่วยเหลือ</Button>
-          </a>
+          <CustomGoogleForm />
           <div className="my-4">หรือ</div>
           <a
             href="https://forms.gle/5JWL4qatByTEbBMw5"
