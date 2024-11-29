@@ -127,8 +127,8 @@ const GoogleSheetPage = () => {
 
   return (
     <DefaultLayout>
-      <div className='p-4 w-full mx-auto'>
-        <div className='text-center mb-4'>
+      <div className='w-full mx-auto'>
+        <div className='text-center mb-12'>
           <h1 className={title()}>ผู้ขอความช่วยเหลือ</h1>
         </div>
 

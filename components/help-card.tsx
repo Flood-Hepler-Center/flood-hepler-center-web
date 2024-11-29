@@ -25,16 +25,16 @@ export default function HelpCardComponent({
   createdAt,
 }: HelpCardProps) {
   return (
-    <Card className='w-full h-48 md:h-64'>
+    <Card className='w-full py-2'>
       <CardHeader className='justify-between'>
         <div className='flex gap-5'>
           <div className='flex flex-col gap-1 items-start justify-center'>
             <h4 className='text-small font-semibold leading-none text-default-600'>
               {name}
             </h4>
-            <h5 className='text-small text-default-400 text-ellipsis overflow-hidden tracking-tight w-full'>
+            <div className='text-small text-default-400 text-ellipsis overflow-hidden tracking-tight w-full'>
               โทร {tel}
-            </h5>
+            </div>
           </div>
         </div>
         <Button
@@ -46,12 +46,14 @@ export default function HelpCardComponent({
           {province}
         </Button>
       </CardHeader>
-      <CardBody className='px-3 py-2 text-small'>
+      <div className='px-3 py-2 text-small'>
         <p>{need}</p>
-      </CardBody>
+      </div>
       <CardFooter className='justify-between'>
         <div className='flex gap-1 text-start justify-start'>
-          <p className='text-start italic text-tiny'>{address}</p>
+          <p className='text-start text-default-400 italic text-tiny'>
+            {address}
+          </p>
         </div>
         <div className='flex gap-1 w-1/4 text-end justify-end'>
           <p className='text-tiny text-default-400 italic text-end'>
