@@ -1,49 +1,49 @@
-import { title } from "@/components/primitives";
-import CustomGoogleForm from "@/components/request-form";
-import DefaultLayout from "@/layouts/default";
-import { Card, Button } from "@nextui-org/react";
-import Link from "next/link";
+import { title } from '@/components/primitives';
+import CustomGoogleForm from '@/components/request-form';
+import DefaultLayout from '@/layouts/default';
+import { Card, Button } from '@nextui-org/react';
+import Link from 'next/link';
 
 const RequestHelperPage = () => {
   return (
     <DefaultLayout>
-      <div className="p-4 max-w-4xl mx-auto text-center">
+      <div className='p-4 max-w-4xl mx-auto text-center'>
         <h1 className={title()}>ส่งคำขอความช่วยเหลือ</h1>
 
         {/* Introduction Card */}
-        <Card className="mb-4 p-4 shadow-md bg-white text-black my-5">
-          <h2 className="text-lg font-semibold mb-2">
+        <Card className='mb-4 p-4 shadow-md bg-white text-black my-5'>
+          <h2 className='text-2xl font-semibold mb-2'>
             ข้อมูลสำคัญเกี่ยวกับการขอความช่วยเหลือ
           </h2>
-          <p className="text-sm text-gray-700">
+          <p className='text-md text-gray-700'>
             หากคุณหรือบุคคลใกล้ชิดต้องการความช่วยเหลือในสถานการณ์ฉุกเฉิน
             โปรดกรอกแบบฟอร์มด้านล่างโดยให้ข้อมูลที่ถูกต้องและครบถ้วนที่สุด
             เพื่อให้ทีมช่วยเหลือสามารถติดต่อกลับได้อย่างรวดเร็ว
           </p>
-          <p className="text-sm text-gray-700 mt-2">
+          <p className='text-md text-gray-700 mt-2'>
             คลิกปุ่มด้านล่างเพื่อไปยังแบบฟอร์มขอความช่วยเหลือ
             และกรอกข้อมูลตามที่ระบุไว้ในฟอร์ม
           </p>
         </Card>
 
         {/* Button to Google Form */}
-        <Card className="p-4 shadow-md bg-white text-black text-center">
-          <h2 className="text-lg font-semibold mb-2">
+        <Card className='p-4 shadow-md bg-white text-black text-center'>
+          <h2 className='text-2xl font-semibold mb-2'>
             แบบฟอร์มขอความช่วยเหลือ
           </h2>
           <CustomGoogleForm />
-          <div className="my-4">หรือ</div>
+          <div className='my-4'>หรือ</div>
           <a
-            href="https://forms.gle/5JWL4qatByTEbBMw5"
-            target="_blank"
-            rel="noopener noreferrer"
+            href='https://forms.gle/5JWL4qatByTEbBMw5'
+            target='_blank'
+            rel='noopener noreferrer'
           >
-            <Button className="text-white">แจ้งเมื่อได้รับความช่วยเหลือแล้ว</Button>
+            <Button>แจ้งเมื่อได้รับความช่วยเหลือแล้ว</Button>
           </a>
         </Card>
-        <div className="my-5">
-          <a href="/helper" rel="noopener noreferrer">
-            <Button className="text-white">ดูรายชื่อผู้ขอความช่วยเหลือ</Button>
+        <div className='my-5 text-lg underline underline-offset-4'>
+          <a href='/helper' rel='noopener noreferrer'>
+            ดูรายชื่อผู้ขอความช่วยเหลือ
           </a>
         </div>
       </div>
