@@ -159,8 +159,10 @@ const GoogleSheetPage = () => {
           </div>
         </Card>
         <div className='text-center md:text-end w-full'>
-          <h2 className='text-md md:text-lg font-semibold'>
-            จำนวนเคสที่รอเข้าช่วยเหลือ: {data.length} เคส
+          <h2 className='text-sm md:text-lg font-semibold'>
+            จำนวนเคสที่รอเข้ารับการช่วยเหลือมีอยู่{' '}
+            <span className={title({ color: 'yellow' })}>{data.length}</span>{' '}
+            เคส
           </h2>
         </div>
         {!data.length ? (
