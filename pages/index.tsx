@@ -155,7 +155,7 @@ export default function IndexPage({ articles }: any) {
       </div>
       <ManualReporterComponent max={9} showSearchFilters={false} />
       <div className="flex text-center my-8 gap-4 justify-center">
-        <Link href={`/send-news`}>
+        <Link href={`/reporter`}>
           <Button size="lg" className="bg-surface">
             ดูข่าวสารเพิ่มเติม
           </Button>
