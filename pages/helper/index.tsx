@@ -168,13 +168,14 @@ const GoogleSheetPage = () => {
                   onAction={(key: any) => setSelectedProvince(key)}
                 >
                   {[
+                    "จังหวัดทั้งหมด",
                     ...new Set(
                       data.map(
                         (row: any) => row["จังหวัด ที่ต้องการความช่วยเหลือ"]
                       )
                     ),
                   ]
-                    .filter(Boolean) // Ensure no undefined or null values
+                    .filter((province) => province) // Exclude null/undefined values
                     .map((province) => (
                       <DropdownItem key={province} textValue={province}>
                         {province}
@@ -197,15 +198,15 @@ const GoogleSheetPage = () => {
         </Card>
 
         {/* Data Display */}
-        <div className='text-center md:text-end w-full'>
-          <h2 className='text-sm md:text-lg font-semibold'>
-            จำนวนเคสที่รอเข้ารับการช่วยเหลือมีอยู่{' '}
-            <span className={title({ color: 'yellow' })}>{data.length}</span>{' '}
+        <div className="text-center md:text-end w-full">
+          <h2 className="text-sm md:text-lg font-semibold">
+            จำนวนเคสที่รอเข้ารับการช่วยเหลือมีอยู่{" "}
+            <span className={title({ color: "yellow" })}>{data.length}</span>{" "}
             เคส
           </h2>
         </div>
         {!data.length ? (
-          <div className='flex justify-center'>
+          <div className="flex justify-center">
             <Card>
               <p className="text-lg text-center p-6">ไม่พบข้อมูลในตอนนี้</p>
             </Card>
