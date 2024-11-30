@@ -24,9 +24,30 @@ export default function ReporterCardComponent({
   createdAt,
   category,
 }: ReporterCardProps) {
+  let textColor, bgColor;
+  switch (category) {
+    case 'ประชาสัมพันธ์':
+      textColor = 'text-primary';
+      bgColor = 'border-l-8 border-r-8 border-primary';
+      break;
+    case 'การให้ความช่วยเหลือ':
+      textColor = 'text-success';
+      bgColor = 'border-l-8 border-r-8 border-success';
+      break;
+    case 'เตือนภัย':
+      textColor = 'text-warning';
+      bgColor = 'border-l-8 border-r-8 border-warning';
+      break;
+    case 'การบริจาค':
+      textColor = 'text-secondary';
+      bgColor = 'border-l-8 border-r-8 border-secondary';
+      break;
+    default:
+      break;
+  }
   return (
-    <Card className='w-full py-2 justify-between'>
-      <CardHeader className='justify-between'>
+    <Card className={`w-full py-2 justify-between ${bgColor}`}>
+      <CardHeader className={`justify-between`}>
         <div className='flex gap-5'>
           <div className='flex flex-col gap-1 items-start justify-center'>
             <h4 className='text-small font-semibold leading-none text-default-600'>
@@ -52,7 +73,9 @@ export default function ReporterCardComponent({
       </CardBody>
       <CardFooter className='justify-between'>
         <div className='flex gap-1 text-start justify-start'>
-          <p className='text-start text-default-400 italic text-tiny'>
+          <p
+            className={`text-start text-default-400 italic ${textColor} text-tiny`}
+          >
             #{category || 'อื่นๆ'}
           </p>
         </div>
