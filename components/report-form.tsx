@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Input, Textarea, Button } from "@nextui-org/react";
+import { fetchGoogleSheet } from "@/src/util/fetchGoogleSheet";
 
 const ReporterForm = () => {
   const [formData, setFormData] = useState({
@@ -7,18 +8,66 @@ const ReporterForm = () => {
     "entry.1003588841": "", // News Content
     "entry.587512804": "", // Contact Information
     "entry.1200525869": "", // Province
+    "entry.817660779": "", // About
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [sheetData, setSheetData] = useState<any>([]);
+  const [filteredSuggestions, setFilteredSuggestions] = useState<any>([]);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  useEffect(() => {
+    const fetchSheetData = async () => {
+      try {
+        const sheetData = await fetchGoogleSheet(
+          "https://docs.google.com/spreadsheets/d/e/2PACX-1vRu0Bu9a_SkOpteuNyXkkiLwYb-Bs6A9Um25m8lOdB48DV9OWhYOeX3uifKQbE_OV4wvYHMLAwx3Tm5/pub?output=csv"
+        );
+        setSheetData(sheetData);
+      } catch (error) {
+        console.error("Error fetching sheet data:", error);
+      }
+    };
+
+    fetchSheetData();
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
+
     setFormData({
       ...formData,
       [name]: value,
     });
+
+    // Filter suggestions for "เกี่ยวกับ" (entry.817660779)
+    if (name === "entry.817660779") {
+      const uniqueSuggestions = [
+        ...new Set(sheetData.map((item: any) => item["เกี่ยวกับ"] || "").filter(Boolean)),
+      ];
+      setFilteredSuggestions(uniqueSuggestions);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion: any) => {
+    setFormData({ ...formData, "entry.817660779": suggestion });
+    setFilteredSuggestions([]);
+    setIsDropdownVisible(false);
+  };
+
+  const handleFocus = () => {
+    // Show dropdown when the field is clicked
+    const uniqueSuggestions = [
+      ...new Set(sheetData.map((item: any) => item["เกี่ยวกับ"] || "").filter(Boolean)),
+    ];
+    setFilteredSuggestions(uniqueSuggestions);
+    setIsDropdownVisible(true);
+  };
+
+  const handleBlur = () => {
+    // Hide dropdown when the field loses focus
+    setTimeout(() => setIsDropdownVisible(false), 100); // Delay to allow click on suggestion
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -47,6 +96,7 @@ const ReporterForm = () => {
           "entry.1003588841": "",
           "entry.587512804": "",
           "entry.1200525869": "",
+          "entry.817660779": "",
         });
       } else {
         throw new Error("Failed to submit form.");
@@ -105,6 +155,31 @@ const ReporterForm = () => {
               value={formData["entry.1200525869"]}
               onChange={handleChange}
             />
+          </div>
+
+          <div className="mb-4 relative">
+            <Input
+              label="เกี่ยวกับ"
+              name="entry.817660779"
+              fullWidth
+              value={formData["entry.817660779"]}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+            {isDropdownVisible && filteredSuggestions.length > 0 && (
+              <ul className=" border rounded shadow w-full">
+                {filteredSuggestions.map((suggestion: any, index: any) => (
+                  <li
+                    key={index}
+                    onClick={() => handleSuggestionClick(suggestion)}
+                    className="p-2 cursor-pointer"
+                  >
+                    {suggestion}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           <Button
