@@ -12,8 +12,6 @@ export default function AnnouncementComponent() {
     fetch();
   }, []);
 
-  console.log('hotNews', hotNews);
-
   return (
     <>
       {hotNews && hotNews.length > 0 && (
