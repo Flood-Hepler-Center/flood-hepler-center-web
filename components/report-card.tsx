@@ -43,6 +43,7 @@ export default function ReporterCardComponent({
       bgColor = 'border-l-8 border-r-8 border-secondary';
       break;
     default:
+      bgColor = 'border-l-8 border-r-8 border-surface';
       break;
   }
   return (
