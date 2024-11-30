@@ -20,7 +20,7 @@ const GOOGLE_SHEET_URL =
 const SUCCESS_GOOGLE_SHEET_URL =
   'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2sg3qEUtJ8mgBXt3PLT5zY89dSRahhiWmCtRvjk78IFvP2rwg-K7PWwYA9bVcLTEiv5egjQIjmdWQ/pub?output=csv';
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 12;
 
 const GoogleSheetPage = () => {
   const [data, setData] = useState<any[]>([]);
