@@ -42,11 +42,25 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
       try {
         const sheetData = await fetchGoogleSheet(MANUAL_REPORT_SHEET_URL);
 
-        const processedData = sheetData.map((row: any, index: number) => ({
-          ...row,
-          id: index + 1,
-          timestamp: new Date(row['ประทับเวลา']).getTime(),
-        }));
+        const processedData = sheetData.map((row: any) => {
+          const [datePart, timePart] = row['ประทับเวลา']?.split(', ') || [];
+          const [day, month, year] = datePart?.split('/')?.map(Number) || [];
+          const [hours, minutes, seconds] =
+            timePart?.split(':')?.map(Number) || [];
+          const parsedDate = new Date(
+            year,
+            month - 1,
+            day,
+            hours,
+            minutes,
+            seconds
+          );
+
+          return {
+            ...row,
+            timestamp: isNaN(parsedDate.getTime()) ? null : parsedDate,
+          };
+        });
 
         setData(processedData);
         setFilteredData(processedData);
@@ -71,6 +85,8 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
           .toLowerCase()
           .includes(searchTerm.toLowerCase())
     );
+
+    console.log(filtered)
 
     filtered = filtered.sort((a, b) =>
       sortOrder === 'asc' ? a.timestamp - b.timestamp : b.timestamp - a.timestamp
