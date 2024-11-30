@@ -28,8 +28,11 @@ export default function HelpCardComponent({
   createdAt,
   isSuccess,
 }: HelpCardProps) {
+  const borderColor = isSuccess ? 'border-green-700' : 'border-red-700';
   return (
-    <Card className='w-full py-3 justify-between'>
+    <Card
+      className={`w-full py-3 justify-between border-l-8 border-r-8 ${borderColor}`}
+    >
       <CardHeader className='gap-2'>
         <div className='flex gap-5 w-3/4'>
           <div className='flex flex-col gap-1 items-start justify-center'>
