@@ -127,6 +127,8 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
     );
   }
 
+  console.log(filteredData?.map((data: any) => data["เกี่ยวกับ"]))
+
   return (
     <div className="w-full mx-auto">
       {showSearchFilters && (
