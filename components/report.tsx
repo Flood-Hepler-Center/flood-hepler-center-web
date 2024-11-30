@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from 'react';
 import {
   Card,
   Input,
@@ -8,12 +8,12 @@ import {
   DropdownItem,
   Spinner,
   Button,
-} from "@nextui-org/react";
-import ReporterCardComponent from "@/components/report-card";
-import { fetchGoogleSheet } from "@/src/util/fetchGoogleSheet";
+} from '@nextui-org/react';
+import ReporterCardComponent from '@/components/report-card';
+import { fetchGoogleSheet } from '@/src/util/fetchGoogleSheet';
 
 const MANUAL_REPORT_SHEET_URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRu0Bu9a_SkOpteuNyXkkiLwYb-Bs6A9Um25m8lOdB48DV9OWhYOeX3uifKQbE_OV4wvYHMLAwx3Tm5/pub?output=csv";
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vRu0Bu9a_SkOpteuNyXkkiLwYb-Bs6A9Um25m8lOdB48DV9OWhYOeX3uifKQbE_OV4wvYHMLAwx3Tm5/pub?output=csv';
 
 interface ManualReporterComponentProps {
   max?: number; // Limit the number of items displayed
@@ -27,9 +27,9 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
   const [data, setData] = useState<any[]>([]);
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedProvince, setSelectedProvince] = useState("จังหวัดทั้งหมด");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc"); // Sorting state
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedProvince, setSelectedProvince] = useState('จังหวัดทั้งหมด');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc'); // Sorting state
   const [visibleItems, setVisibleItems] = useState(max || 0);
 
   const loaderRef = useRef<HTMLDivElement | null>(null);
@@ -40,9 +40,10 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
         const sheetData = await fetchGoogleSheet(MANUAL_REPORT_SHEET_URL);
 
         const processedData = sheetData.map((row: any) => {
-          const [datePart, timePart] = row["ประทับเวลา"]?.split(", ") || [];
-          const [day, month, year] = datePart?.split("/")?.map(Number) || [];
-          const [hours, minutes, seconds] = timePart?.split(":")?.map(Number) || [];
+          const [datePart, timePart] = row['ประทับเวลา']?.split(', ') || [];
+          const [day, month, year] = datePart?.split('/')?.map(Number) || [];
+          const [hours, minutes, seconds] =
+            timePart?.split(':')?.map(Number) || [];
           const parsedDate = new Date(
             year,
             month - 1,
@@ -61,7 +62,7 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
         setData(processedData);
         setFilteredData(processedData);
       } catch (error) {
-        console.error("Error fetching Google Sheets data:", error);
+        console.error('Error fetching Google Sheets data:', error);
       } finally {
         setLoading(false);
       }
@@ -73,16 +74,19 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
   useEffect(() => {
     let filtered = data.filter(
       (row: any) =>
-        (selectedProvince === "จังหวัดทั้งหมด" ||
-          row["จังหวัดที่อยู่"] === selectedProvince) &&
-        Object.values(row).join(" ").toLowerCase().includes(searchTerm.toLowerCase())
+        (selectedProvince === 'จังหวัดทั้งหมด' ||
+          row['จังหวัดที่อยู่'] === selectedProvince) &&
+        Object.values(row)
+          .join(' ')
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
     );
 
     // Apply sorting
     filtered = filtered
       .filter((row: any) => row.timestamp !== null) // Exclude invalid dates
       .sort((a: any, b: any) =>
-        sortOrder === "asc"
+        sortOrder === 'asc'
           ? a.timestamp.getTime() - b.timestamp.getTime()
           : b.timestamp.getTime() - a.timestamp.getTime()
       );
@@ -121,37 +125,35 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center my-4">
-        <Spinner label="กำลังโหลดข้อมูล..." size="lg" />
+      <div className='flex justify-center items-center my-4'>
+        <Spinner label='กำลังโหลดข้อมูล...' size='lg' />
       </div>
     );
   }
 
-  console.log(filteredData?.map((data: any) => data["เกี่ยวกับ"]))
-
   return (
-    <div className="w-full mx-auto">
+    <div className='w-full mx-auto'>
       {showSearchFilters && (
-        <Card className="mb-4 p-4">
-          <div className="flex flex-col w-50 gap-4 md:flex-row md:items-center md:justify-between">
+        <Card className='mb-4 p-4'>
+          <div className='flex flex-col w-50 gap-4 md:flex-row md:items-center md:justify-between'>
             <Input
-              placeholder="ค้นหา..."
+              placeholder='ค้นหา...'
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               fullWidth
             />
-            <div className="flex gap-4">
+            <div className='flex gap-4'>
               <Dropdown>
                 <DropdownTrigger>
-                  <Button variant="flat">{selectedProvince}</Button>
+                  <Button variant='flat'>{selectedProvince}</Button>
                 </DropdownTrigger>
                 <DropdownMenu
-                  aria-label="เลือกจังหวัด"
+                  aria-label='เลือกจังหวัด'
                   onAction={(key: any) => setSelectedProvince(key)}
                 >
                   {[
-                    "จังหวัดทั้งหมด",
-                    ...new Set(data.map((row: any) => row["จังหวัดที่อยู่"])),
+                    'จังหวัดทั้งหมด',
+                    ...new Set(data.map((row: any) => row['จังหวัดที่อยู่'])),
                   ]
                     .filter(Boolean)
                     .map((province) => (
@@ -162,36 +164,37 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
                 </DropdownMenu>
               </Dropdown>
               <Button
-                variant="flat"
+                variant='flat'
                 onClick={() =>
-                  setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
+                  setSortOrder((prev) => (prev === 'asc' ? 'desc' : 'asc'))
                 }
               >
-                {sortOrder === "asc"
-                  ? "เรียงจากเก่าไปใหม่"
-                  : "เรียงจากใหม่ไปเก่า"}
+                {sortOrder === 'asc'
+                  ? 'เรียงจากเก่าไปใหม่'
+                  : 'เรียงจากใหม่ไปเก่า'}
               </Button>
             </div>
           </div>
         </Card>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
         {filteredData.slice(0, visibleItems).map((row: any, index: number) => (
           <ReporterCardComponent
             key={index}
-            title={row["ชื่อข่าวสาร"]}
-            content={row["เนื้อหาข่าวสาร"]}
-            contact={row["ข้อมูลติดต่อ"]}
-            province={row["จังหวัดที่อยู่"]}
-            createdAt={row["ประทับเวลา"]}
+            title={row['ชื่อข่าวสาร']}
+            content={row['เนื้อหาข่าวสาร']}
+            contact={row['ข้อมูลติดต่อ']}
+            province={row['จังหวัดที่อยู่']}
+            createdAt={row['ประทับเวลา']}
+            category={row['เกี่ยวกับ']}
           />
         ))}
       </div>
 
       {!max && visibleItems < filteredData.length && (
-        <div ref={loaderRef} className="flex justify-center mt-8">
-          <Spinner size="sm" />
+        <div ref={loaderRef} className='flex justify-center mt-8'>
+          <Spinner size='sm' />
         </div>
       )}
     </div>

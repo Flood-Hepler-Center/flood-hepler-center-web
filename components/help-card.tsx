@@ -34,10 +34,10 @@ export default function HelpCardComponent({
         <div className='flex gap-5 w-3/4'>
           <div className='flex flex-col gap-1 items-start justify-center'>
             <h4 className='text-small font-semibold leading-none text-default-600'>
-              {name}
+              {name || 'ไม่ระบุชื่อ'}
             </h4>
             <div className='text-small text-default-400 text-ellipsis overflow-hidden tracking-tight w-full'>
-              โทร {tel}
+              โทร {tel || 'ไม่ระบุเบอร์โทร'}
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@ export default function HelpCardComponent({
       <CardFooter className='justify-between'>
         <div className='flex gap-1 text-start justify-start'>
           <p className='text-start text-default-400 italic text-tiny'>
-            {address}
+            {address || 'ไม่ระบุที่อยู่'}
           </p>
         </div>
         <div className='flex gap-1 w-1/4 text-end justify-end'>

@@ -186,11 +186,6 @@ export default function IndexPage({ articles }: any) {
             ดูข่าวสารเพิ่มเติม
           </Button>
         </Link>
-        <Link href={`/send-news`}>
-          <Button fullWidth size='lg' className='bg-surface'>
-            แจ้งข่าวสาร
-          </Button>
-        </Link>
       </div>
       <ManualReporterComponent max={6} showSearchFilters={false} />
       <div className='flex text-center my-8 gap-4 justify-center'>
