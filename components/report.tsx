@@ -20,6 +20,8 @@ interface ManualReporterComponentProps {
   showSearchFilters?: boolean; // Show search and filters
 }
 
+const ITEMS_PER_PAGE = 10;
+
 const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
   max,
   showSearchFilters = true,
@@ -29,8 +31,9 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProvince, setSelectedProvince] = useState('จังหวัดทั้งหมด');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc'); // Sorting state
-  const [visibleItems, setVisibleItems] = useState(max || 0);
+  const [selectedCategory, setSelectedCategory] = useState('ประเภททั้งหมด');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+  const [visibleItems, setVisibleItems] = useState(max || ITEMS_PER_PAGE);
 
   const loaderRef = useRef<HTMLDivElement | null>(null);
 
@@ -39,25 +42,11 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
       try {
         const sheetData = await fetchGoogleSheet(MANUAL_REPORT_SHEET_URL);
 
-        const processedData = sheetData.map((row: any) => {
-          const [datePart, timePart] = row['ประทับเวลา']?.split(', ') || [];
-          const [day, month, year] = datePart?.split('/')?.map(Number) || [];
-          const [hours, minutes, seconds] =
-            timePart?.split(':')?.map(Number) || [];
-          const parsedDate = new Date(
-            year,
-            month - 1,
-            day,
-            hours,
-            minutes,
-            seconds
-          );
-
-          return {
-            ...row,
-            timestamp: isNaN(parsedDate.getTime()) ? null : parsedDate,
-          };
-        });
+        const processedData = sheetData.map((row: any, index: number) => ({
+          ...row,
+          id: index + 1,
+          timestamp: new Date(row['ประทับเวลา']).getTime(),
+        }));
 
         setData(processedData);
         setFilteredData(processedData);
@@ -76,36 +65,33 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
       (row: any) =>
         (selectedProvince === 'จังหวัดทั้งหมด' ||
           row['จังหวัดที่อยู่'] === selectedProvince) &&
+        (selectedCategory === 'ประเภททั้งหมด' || row['เกี่ยวกับ'] === selectedCategory) &&
         Object.values(row)
           .join(' ')
           .toLowerCase()
           .includes(searchTerm.toLowerCase())
     );
 
-    // Apply sorting
-    filtered = filtered
-      .filter((row: any) => row.timestamp !== null) // Exclude invalid dates
-      .sort((a: any, b: any) =>
-        sortOrder === 'asc'
-          ? a.timestamp.getTime() - b.timestamp.getTime()
-          : b.timestamp.getTime() - a.timestamp.getTime()
-      );
+    filtered = filtered.sort((a, b) =>
+      sortOrder === 'asc' ? a.timestamp - b.timestamp : b.timestamp - a.timestamp
+    );
 
     if (max) {
-      filtered = filtered.slice(0, max); // Apply max limit only if max is provided
+      filtered = filtered.slice(0, max);
     }
 
     setFilteredData(filtered);
-  }, [searchTerm, selectedProvince, sortOrder, data, max]);
+  }, [searchTerm, selectedProvince, selectedCategory, sortOrder, data, max]);
 
-  // Infinite Scroll
   useEffect(() => {
     if (!max) {
       const observer = new IntersectionObserver(
         (entries) => {
           const entry = entries[0];
           if (entry.isIntersecting) {
-            setVisibleItems((prev) => Math.min(prev + 10, filteredData.length));
+            setVisibleItems((prev) =>
+              Math.min(prev + ITEMS_PER_PAGE, filteredData.length)
+            );
           }
         },
         { threshold: 1.0 }
@@ -125,7 +111,7 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
 
   if (loading) {
     return (
-      <div className='flex justify-center items-center my-4'>
+      <div className='flex justify-center items-center h-screen'>
         <Spinner label='กำลังโหลดข้อมูล...' size='lg' />
       </div>
     );
@@ -135,7 +121,7 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
     <div className='w-full mx-auto'>
       {showSearchFilters && (
         <Card className='mb-4 p-4'>
-          <div className='flex flex-col w-50 gap-4 md:flex-row md:items-center md:justify-between'>
+          <div className='flex flex-col gap-4 md:flex-row md:items-center md:justify-between'>
             <Input
               placeholder='ค้นหา...'
               value={searchTerm}
@@ -157,9 +143,25 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
                   ]
                     .filter(Boolean)
                     .map((province) => (
-                      <DropdownItem key={province} textValue={province}>
-                        {province}
-                      </DropdownItem>
+                      <DropdownItem key={province}>{province}</DropdownItem>
+                    ))}
+                </DropdownMenu>
+              </Dropdown>
+              <Dropdown>
+                <DropdownTrigger>
+                  <Button variant='flat'>{selectedCategory}</Button>
+                </DropdownTrigger>
+                <DropdownMenu
+                  aria-label='เลือกหมวดหมู่'
+                  onAction={(key: any) => setSelectedCategory(key)}
+                >
+                  {[
+                    'ประเภททั้งหมด',
+                    ...new Set(data.map((row: any) => row['เกี่ยวกับ'])),
+                  ]
+                    .filter(Boolean)
+                    .map((category) => (
+                      <DropdownItem key={category}>{category}</DropdownItem>
                     ))}
                 </DropdownMenu>
               </Dropdown>
