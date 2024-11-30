@@ -30,6 +30,10 @@ export default function ReporterCardComponent({
       textColor = 'text-primary';
       bgColor = 'border-l-8 border-r-8 border-primary';
       break;
+    case 'สถานการณ์น้ำท่วม':
+      textColor = 'text-placeholder';
+      bgColor = 'border-l-8 border-r-8 border-placeholder';
+      break;
     case 'การให้ความช่วยเหลือ':
       textColor = 'text-success';
       bgColor = 'border-l-8 border-r-8 border-success';
