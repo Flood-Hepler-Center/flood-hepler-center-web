@@ -24,6 +24,23 @@ export default function ReporterCardComponent({
   createdAt,
   category,
 }: ReporterCardProps) {
+  let textColor;
+  switch (category) {
+    case 'ประชาสัมพันธ์':
+      textColor = 'text-primary';
+      break;
+    case 'การให้ความช่วยเหลือ':
+      textColor = 'text-success';
+      break;
+    case 'เตือนภัย':
+      textColor = 'text-warning';
+      break;
+    case 'การบริจาค':
+      textColor = 'text-secondary';
+      break;
+    default:
+      break;
+  }
   return (
     <Card className='w-full py-2 justify-between'>
       <CardHeader className='justify-between'>
@@ -52,7 +69,9 @@ export default function ReporterCardComponent({
       </CardBody>
       <CardFooter className='justify-between'>
         <div className='flex gap-1 text-start justify-start'>
-          <p className='text-start text-default-400 italic text-tiny'>
+          <p
+            className={`text-start text-default-400 italic ${textColor} text-tiny`}
+          >
             #{category || 'อื่นๆ'}
           </p>
         </div>

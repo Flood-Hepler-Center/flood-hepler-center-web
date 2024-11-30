@@ -133,7 +133,7 @@ export default function IndexPage({ articles }: any) {
               <Button
                 fullWidth
                 color='danger'
-                className='text-xl md:text-4xl h-16'
+                className='text-xl font-semibold md:text-4xl h-16'
               >
                 แจ้งขอความช่วยเหลือ
               </Button>
@@ -144,7 +144,7 @@ export default function IndexPage({ articles }: any) {
               <Button
                 fullWidth
                 color='warning'
-                className='text-xl text-white md:text-4xl h-16'
+                className='text-xl text-white font-semibold md:text-4xl h-16'
               >
                 แจ้งข่าวสารที่มีประโยชน์
               </Button>
@@ -180,14 +180,6 @@ export default function IndexPage({ articles }: any) {
         <h1 className={title()}>ข่าวสารล่าสุดจากประชาชน</h1>
       </div>
       <ManualReporterComponent max={6} showSearchFilters={true} />
-      <div className='flex text-center my-8 gap-4 justify-center'>
-        <Link href={`/reporter`}>
-          <Button size='lg' className='bg-surface'>
-            ดูข่าวสารเพิ่มเติม
-          </Button>
-        </Link>
-      </div>
-      <ManualReporterComponent max={6} showSearchFilters={false} />
       <div className='flex text-center my-8 gap-4 justify-center'>
         <Link href={`/reporter`}>
           <Button size='lg' className='bg-surface'>
