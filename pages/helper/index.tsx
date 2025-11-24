@@ -84,9 +84,9 @@ const GoogleSheetPage = () => {
     filtered = filtered
       .map((row) => {
         // Parse the date manually
-        const [datePart, timePart] = row['ประทับเวลา'].split(', ');
-        const [day, month, year] = datePart.split('/').map(Number);
-        const [hours, minutes, seconds] = timePart.split(':').map(Number);
+        const [datePart, timePart] = row['ประทับเวลา']?.split(', ') ?? [];
+        const [day, month, year] = datePart?.split('/')?.map(Number) ?? [];
+        const [hours, minutes, seconds] = timePart?.split(':')?.map(Number) ?? [];
         const parsedDate = new Date(
           year,
           month - 1,
