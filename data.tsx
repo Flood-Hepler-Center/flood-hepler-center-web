@@ -588,46 +588,46 @@ export const PHONE_NUMBER = [
 ];
 
 export const DONATION = [
-  {
-    name: "สภาเครือข่ายช่วยเหลือด้านมนุษยธรรม สำนักจุฬาราชมนตรี ",
-    detail: "เลขที่บัญชี 034-1-09640-7 ธนาคารอิสลาม",
-    bankAccount: "ชื่อบัญชี สภาเครือข่ายช่วยเหลือด้านมนุษยธรรม สำนักจุฬาราชมนตรี",
-    link: "https://www.facebook.com/100064742134705/posts/993659362802126/?rdid=i3SITyJdsNJtWTcX",
-  },
-  {
-    name: "มหาวิทยาลัยสงขลานครินทร์",
-    detail: "เลขที่บัญชี 565-471106-1 ธนาคารไทยพาณิชย์",
-    bankAccount: "ชื่อบัญชี สงขลานครินทร์เพื่อผู้ประสบภัย",
-    link: "https://www.facebook.com/photo.php?fbid=894558786115396&set=a.309112731326674&type=3&ref=embed_post",
-  },
-  {
-    name: "มูลนิธิกระจกเงา",
-    detail: "202-258298-3 บัญชีกองทุนภัยพิบัติ ธนาคารไทยพาณิชย์",
-    bankAccount: "ชื่อบัญชี บัญชีกองทุนภัยพิบัติ โดยมูลนิธิกระจกเงา",
-    link: "https://taejai.com/th/project/mirror_fund_ot",
-  },
-  {
-    name: "มูลนิธิรักษ์ไทย : Raks Thai Foundation",
-    detail: "เลขที่บัญชี 799-2-50785-8 ธนาคารกสิกรไทย",
-    bankAccount: "ชื่อบัญชี มูลนิธิรักษ์ไทยธนาคาร",
-    link: "https://www.facebook.com/100068326638949/posts/875365831417630/?mibextid=WC7FNe&rdid=VyOxEIQHmugrp8cP",
-  },
-  {
-    name: "เทศบาลนครยะลา Yalacity",
-    detail: "เลขที่บัญชี 020241724463 ธนาคารเพื่อการเกษตรฯ (ธกส.) สาขายะลา",
-    bankAccount: "ชื่อบัญชี ช่วยเหลือผู้ประสบอุทกภัยเพื่อจัดซื้อเครื่องอุปโภคบริโภค",
-    link: "https://www.facebook.com/share/p/1Y954WYrnb/?mibextid=WC7FNe",
-  },
-  {
-    name: "สมาคมเยาวชนสานใจไทย สู่ใจใต้ ",
-    detail: "เลขที่บัญชี 169-2-78596-3 ธนาคารกสิกรไทย",
-    bankAccount: "ชื่อบัญชี สมาคมเยาวชนสานใจไทย สู่ใจใต้ ",
-    link: "https://www.facebook.com/share/p/19Y7cPpbTK/?mibextid=WC7FNe",
-  },
-  {
-    name: "มูลนิธิคนช่วยฅน",
-    detail: "เลขที่บัญชี 061-1-10425-3 ธนาคารอิสลาม",
-    bankAccount: "ชื่อบัญชี ช่วยเหลือผู้ประสบภัยและผู้ยากไร้มูลนิธิคนช่วยฅน",
-    link: "https://www.facebook.com/share/p/14y6Vr4ptX/?mibextid=WC7FNe",
-  },
+  // {
+  //   name: "สภาเครือข่ายช่วยเหลือด้านมนุษยธรรม สำนักจุฬาราชมนตรี ",
+  //   detail: "เลขที่บัญชี 034-1-09640-7 ธนาคารอิสลาม",
+  //   bankAccount: "ชื่อบัญชี สภาเครือข่ายช่วยเหลือด้านมนุษยธรรม สำนักจุฬาราชมนตรี",
+  //   link: "https://www.facebook.com/100064742134705/posts/993659362802126/?rdid=i3SITyJdsNJtWTcX",
+  // },
+  // {
+  //   name: "มหาวิทยาลัยสงขลานครินทร์",
+  //   detail: "เลขที่บัญชี 565-471106-1 ธนาคารไทยพาณิชย์",
+  //   bankAccount: "ชื่อบัญชี สงขลานครินทร์เพื่อผู้ประสบภัย",
+  //   link: "https://www.facebook.com/photo.php?fbid=894558786115396&set=a.309112731326674&type=3&ref=embed_post",
+  // },
+  // {
+  //   name: "มูลนิธิกระจกเงา",
+  //   detail: "202-258298-3 บัญชีกองทุนภัยพิบัติ ธนาคารไทยพาณิชย์",
+  //   bankAccount: "ชื่อบัญชี บัญชีกองทุนภัยพิบัติ โดยมูลนิธิกระจกเงา",
+  //   link: "https://taejai.com/th/project/mirror_fund_ot",
+  // },
+  // {
+  //   name: "มูลนิธิรักษ์ไทย : Raks Thai Foundation",
+  //   detail: "เลขที่บัญชี 799-2-50785-8 ธนาคารกสิกรไทย",
+  //   bankAccount: "ชื่อบัญชี มูลนิธิรักษ์ไทยธนาคาร",
+  //   link: "https://www.facebook.com/100068326638949/posts/875365831417630/?mibextid=WC7FNe&rdid=VyOxEIQHmugrp8cP",
+  // },
+  // {
+  //   name: "เทศบาลนครยะลา Yalacity",
+  //   detail: "เลขที่บัญชี 020241724463 ธนาคารเพื่อการเกษตรฯ (ธกส.) สาขายะลา",
+  //   bankAccount: "ชื่อบัญชี ช่วยเหลือผู้ประสบอุทกภัยเพื่อจัดซื้อเครื่องอุปโภคบริโภค",
+  //   link: "https://www.facebook.com/share/p/1Y954WYrnb/?mibextid=WC7FNe",
+  // },
+  // {
+  //   name: "สมาคมเยาวชนสานใจไทย สู่ใจใต้ ",
+  //   detail: "เลขที่บัญชี 169-2-78596-3 ธนาคารกสิกรไทย",
+  //   bankAccount: "ชื่อบัญชี สมาคมเยาวชนสานใจไทย สู่ใจใต้ ",
+  //   link: "https://www.facebook.com/share/p/19Y7cPpbTK/?mibextid=WC7FNe",
+  // },
+  // {
+  //   name: "มูลนิธิคนช่วยฅน",
+  //   detail: "เลขที่บัญชี 061-1-10425-3 ธนาคารอิสลาม",
+  //   bankAccount: "ชื่อบัญชี ช่วยเหลือผู้ประสบภัยและผู้ยากไร้มูลนิธิคนช่วยฅน",
+  //   link: "https://www.facebook.com/share/p/14y6Vr4ptX/?mibextid=WC7FNe",
+  // },
 ];

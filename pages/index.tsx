@@ -80,13 +80,13 @@ export default function IndexPage({ articles }: any) {
             ช่วยเหลือ&nbsp;
           </span>
           <br />
-          <span className={title({ size: 'lg' })}>น้ำท่วมภาคใต้ 2567</span>
+          <span className={title({ size: 'lg' })}>น้ำท่วมภาคใต้ 2568</span>
           <div
             className={subtitle({
               class: 'mt-10 mb-10 font-semibold leading-7',
             })}
           >
-            รวบรวมข้อมูลและทราบข่าวสารเกี่ยวกับน้ำท่วมภาคใต้ปี 2567
+            รวบรวมข้อมูลและทราบข่าวสารเกี่ยวกับน้ำท่วมภาคใต้ปี 2568
           </div>
           <Card
             isBlurred

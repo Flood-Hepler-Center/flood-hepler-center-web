@@ -36,7 +36,7 @@ export const Navbar = () => {
               'hidden tracking-tight md:inline font-semibold from-[#FF72E1] to-[#F54C7A] text-md bg-clip-text text-transparent bg-gradient-to-b'
             }
           >
-            น้ำท่วมภาคใต้67.COM
+            น้ำท่วมภาคใต้68.COM
           </h4>
         </NextLink>
         {/* <div className='hidden md:flex gap-4 justify-start ml-2'>

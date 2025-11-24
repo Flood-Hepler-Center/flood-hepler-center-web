@@ -1,8 +1,8 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: 'ศูนย์ข้อมูลน้ำท่วมภาคใต้ปี 2567 | Southern Flood Information Center 2024',
-  description: 'รวบรวมข้อมูลและทราบข่าวสารเกี่ยวกับน้ำท่วมภาคใต้ 2567',
+  name: 'ศูนย์ข้อมูลน้ำท่วมภาคใต้ปี 2568 | Southern Flood Information Center 2024',
+  description: 'รวบรวมข้อมูลและทราบข่าวสารเกี่ยวกับน้ำท่วมภาคใต้ 2568',
   navItems: [
     {
       label: 'หน้าแรก',
