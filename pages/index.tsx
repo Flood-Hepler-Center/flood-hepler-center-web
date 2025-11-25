@@ -129,7 +129,7 @@ export default function IndexPage({ articles }: any) {
             เราจะผ่านพ้นวิกฤตนี้ไปด้วยกัน"
           </div>
           <div className='text-center mb-6'>
-            <a href='https://jitasa.care' target='_blank' rel='noopener noreferrer'>
+            <a href='/request'>
               <Button
                 fullWidth
                 color='danger'
