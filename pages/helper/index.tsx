@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
   Card,
   Input,
@@ -6,14 +6,15 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-  Spinner,
   Button,
+  Spinner,
 } from '@nextui-org/react';
 import DefaultLayout from '@/layouts/default';
 import { title } from '@/components/primitives';
 import HelpCardComponent from '@/components/help-card';
 import { fetchGoogleSheet } from '@/src/util/fetchGoogleSheet';
 import dayjs from 'dayjs';
+import { GetStaticProps } from 'next';
 
 const GOOGLE_SHEET_URL =
   'https://docs.google.com/spreadsheets/d/e/2PACX-1vTkvS_fgba8jb9gz8AjNmvrTPKNNX7bQ3rLiRazabOnvW8tFAkRYlkJmMvUvXfeRGBca5BlowiZJEhG/pub?output=csv';
@@ -22,52 +23,61 @@ const SUCCESS_GOOGLE_SHEET_URL =
 
 const ITEMS_PER_PAGE = 12;
 
-const GoogleSheetPage = () => {
-  const [data, setData] = useState<any[]>([]);
-  const [successData, setSuccessData] = useState<any[]>([]);
-  const [filteredData, setFilteredData] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+interface GoogleSheetPageProps {
+  initialData: any[];
+  initialSuccessData: any[];
+}
+
+export const getStaticProps: GetStaticProps<GoogleSheetPageProps> = async () => {
+  try {
+    const sheetData = await fetchGoogleSheet(GOOGLE_SHEET_URL);
+    const successData = await fetchGoogleSheet(SUCCESS_GOOGLE_SHEET_URL);
+
+    const processedData = sheetData.map((row: any, index) => ({
+      ...row,
+      fullAddress: `${row['ที่อยู่ ที่ต้องการความช่วยเหลือ'] || ''} ${
+        row['ตำบล ที่ต้องการความช่วยเหลือ'] || ''
+      } ${row['อำเภอ ที่ต้องการความช่วยเหลือ'] || ''} ${
+        row['จังหวัด ที่ต้องการความช่วยเหลือ'] || ''
+      }`,
+      timestamp: new Date(row['ประทับเวลา']).getTime(),
+      id: index + 1,
+    }));
+
+    const processedSuccessData = successData.map(
+      (row: any) =>
+        row['ชื่อที่ได้รับความช่วยเหลือ (ต้องตรงกับที่แจ้งขอความช่วยเหลือ)']
+    );
+
+    return {
+      props: {
+        initialData: processedData,
+        initialSuccessData: processedSuccessData,
+      },
+      revalidate: 60, // Revalidate every 60 seconds
+    };
+  } catch (error) {
+    console.error('Error fetching Google Sheets data:', error);
+    return {
+      props: {
+        initialData: [],
+        initialSuccessData: [],
+      },
+      revalidate: 60,
+    };
+  }
+};
+
+const GoogleSheetPage = ({ initialData, initialSuccessData }: GoogleSheetPageProps) => {
+  const [data] = useState<any[]>(initialData);
+  const [successData] = useState<any[]>(initialSuccessData);
+  const [filteredData, setFilteredData] = useState<any[]>(initialData);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProvince, setSelectedProvince] = useState('จังหวัดทั้งหมด');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [visibleItems, setVisibleItems] = useState(ITEMS_PER_PAGE);
 
   const loaderRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const sheetData = await fetchGoogleSheet(GOOGLE_SHEET_URL);
-        const successData = await fetchGoogleSheet(SUCCESS_GOOGLE_SHEET_URL);
-
-        const processedData = sheetData.map((row: any, index) => ({
-          ...row,
-          fullAddress: `${row['ที่อยู่ ที่ต้องการความช่วยเหลือ'] || ''} ${
-            row['ตำบล ที่ต้องการความช่วยเหลือ'] || ''
-          } ${row['อำเภอ ที่ต้องการความช่วยเหลือ'] || ''} ${
-            row['จังหวัด ที่ต้องการความช่วยเหลือ'] || ''
-          }`,
-          timestamp: new Date(row['ประทับเวลา']).getTime(),
-          id: index + 1,
-        }));
-
-        const processedSuccessData = successData.map(
-          (row: any) =>
-            row['ชื่อที่ได้รับความช่วยเหลือ (ต้องตรงกับที่แจ้งขอความช่วยเหลือ)']
-        );
-
-        setSuccessData(processedSuccessData);
-        setData(processedData);
-        setFilteredData(processedData);
-      } catch (error) {
-        console.error('Error fetching Google Sheets data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   useEffect(() => {
     let filtered = data.filter(
@@ -134,14 +144,6 @@ const GoogleSheetPage = () => {
       }
     };
   }, [filteredData]);
-
-  if (loading) {
-    return (
-      <div className='flex justify-center items-center h-screen'>
-        <Spinner label='กำลังโหลดข้อมูล...' size='lg' />
-      </div>
-    );
-  }
 
   return (
     <DefaultLayout>

@@ -18,6 +18,7 @@ const MANUAL_REPORT_SHEET_URL =
 interface ManualReporterComponentProps {
   max?: number; // Limit the number of items displayed
   showSearchFilters?: boolean; // Show search and filters
+  initialData?: any[]; // Pre-fetched data for ISR
 }
 
 const ITEMS_PER_PAGE = 10;
@@ -25,10 +26,11 @@ const ITEMS_PER_PAGE = 10;
 const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
   max,
   showSearchFilters = true,
+  initialData,
 }) => {
-  const [data, setData] = useState<any[]>([]);
-  const [filteredData, setFilteredData] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<any[]>(initialData || []);
+  const [filteredData, setFilteredData] = useState<any[]>(initialData || []);
+  const [loading, setLoading] = useState(!initialData);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProvince, setSelectedProvince] = useState('จังหวัดทั้งหมด');
   const [selectedCategory, setSelectedCategory] = useState('ประเภททั้งหมด');
@@ -38,15 +40,20 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
   const loaderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    // Skip fetching if initialData is provided (ISR mode)
+    if (initialData) {
+      return;
+    }
+
     const fetchData = async () => {
       try {
         const sheetData = await fetchGoogleSheet(MANUAL_REPORT_SHEET_URL);
 
         const processedData = sheetData.map((row: any) => {
-          const [datePart, timePart] = row['ประทับเวลา']?.split(', ') || [];
-          const [day, month, year] = datePart?.split('/')?.map(Number) || [];
+          const [datePart, timePart] = row['ประทับเวลา']?.split(', ') ?? [];
+          const [day, month, year] = datePart?.split('/')?.map(Number) ?? [];
           const [hours, minutes, seconds] =
-            timePart?.split(':')?.map(Number) || [];
+            timePart?.split(':')?.map(Number) ?? [];
           const parsedDate = new Date(
             year,
             month - 1,
@@ -72,7 +79,7 @@ const ManualReporterComponent: React.FC<ManualReporterComponentProps> = ({
     };
 
     fetchData();
-  }, []);
+  }, [initialData]);
 
   useEffect(() => {
     let filtered = data.filter(
