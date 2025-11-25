@@ -10,7 +10,7 @@ export const siteConfig = {
     },
     {
       label: 'ขอความช่วยเหลือ',
-      href: '/request',
+      href: 'https://jitasa.care',
     },
     {
       label: 'ผู้ต้องการความช่วยเหลือ',

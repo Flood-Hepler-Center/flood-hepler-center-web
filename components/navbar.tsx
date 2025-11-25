@@ -97,13 +97,22 @@ export const Navbar = () => {
 
       <NavbarMenu className='top-36'>
         <div className='mx-4 mt-6 flex flex-col gap-6'>
-          {siteConfig.navItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link color={'foreground'} href={item.href} size='lg'>
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
-          ))}
+          {siteConfig.navItems.map((item, index) => {
+            const isExternal = item.href.startsWith('http');
+            return (
+              <NavbarMenuItem key={`${item}-${index}`}>
+                <Link
+                  color={'foreground'}
+                  href={item.href}
+                  size='lg'
+                  isExternal={isExternal}
+                  showAnchorIcon={isExternal}
+                >
+                  {item.label}
+                </Link>
+              </NavbarMenuItem>
+            );
+          })}
         </div>
       </NavbarMenu>
     </NextUINavbar>
