@@ -33,16 +33,19 @@ export const getStaticProps: GetStaticProps<GoogleSheetPageProps> = async () => 
     const sheetData = await fetchGoogleSheet(GOOGLE_SHEET_URL);
     const successData = await fetchGoogleSheet(SUCCESS_GOOGLE_SHEET_URL);
 
-    const processedData = sheetData.map((row: any, index) => ({
-      ...row,
-      fullAddress: `${row['ที่อยู่ ที่ต้องการความช่วยเหลือ'] || ''} ${
-        row['ตำบล ที่ต้องการความช่วยเหลือ'] || ''
-      } ${row['อำเภอ ที่ต้องการความช่วยเหลือ'] || ''} ${
-        row['จังหวัด ที่ต้องการความช่วยเหลือ'] || ''
-      }`,
-      timestamp: new Date(row['ประทับเวลา']).getTime(),
-      id: index + 1,
-    }));
+    const processedData = sheetData.map((row: any, index) => {
+      const timestamp = new Date(row['ประทับเวลา']).getTime();
+      return {
+        ...row,
+        fullAddress: `${row['ที่อยู่ ที่ต้องการความช่วยเหลือ'] || ''} ${
+          row['ตำบล ที่ต้องการความช่วยเหลือ'] || ''
+        } ${row['อำเภอ ที่ต้องการความช่วยเหลือ'] || ''} ${
+          row['จังหวัด ที่ต้องการความช่วยเหลือ'] || ''
+        }`,
+        timestamp: isNaN(timestamp) ? 0 : timestamp, // Ensure valid number
+        id: index + 1,
+      };
+    });
 
     const processedSuccessData = successData.map(
       (row: any) =>

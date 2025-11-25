@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps<ManualReportPageProps> = async () =>
 
       return {
         ...row,
-        timestamp: isNaN(parsedDate.getTime()) ? null : parsedDate,
+        timestamp: isNaN(parsedDate.getTime()) ? null : parsedDate.getTime(), // Convert to number
       };
     });
 
